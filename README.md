@@ -1,24 +1,37 @@
-# README
+# < ゲームコネクト(ゲーネク) >
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+  ゲームコネクトは、様々なゲームのことについて話したり、一緒に遊ぶ仲間を探すことのできるサイトです。
+  
+### サイトテーマ
+<...今はマルチプレイが可能なゲームがたくさんありますが、人によって好みは大きく違います。
+  遊んでみたいと思ったゲームでも一緒にやる人が近くにいない場合、そのゲームを遊ぶこと自体を諦めてしまう人もいるかと思います。
+  そういう人が集まって同好の士を見つけ、色んなゲームに触れていける機会を作ることを目的としています。>
 
-Things you may want to cover:
+### テーマを選んだ理由
+<...自分もゲームがとても好きですが、何よりも友人たちと遊びたいのです。
+  しかし、自分のやりたいものが友達にとっては微妙で、結局一緒にできないことがあったので
+  自分と似たような趣味を持つ人たちと話し、触れたことのないゲームを一緒に遊べるくらい仲良くなれたらいいなと思ったので
+  このテーマを選びました。>
 
-* Ruby version
+### ターゲットユーザ
+<...ソシャゲやゲームをやっている方々>
 
-* System dependencies
+### 主な利用シーン
+<...なんらかのゲームでマルチプレイをしたいと思った時
+    または特定のゲームについて何らかの情報交換をしたいと思った時>
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- 実装機能リスト https://docs.google.com/spreadsheets/d/19GNfV3btEDGy9j2QHQzXGrw9jA7YeKSHf6Bu0o7rIqw/edit?usp=sharing
