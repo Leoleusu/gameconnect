@@ -1,4 +1,4 @@
-# < ゲームコネクト(ゲーネク) >
+#  ゲームコネクト(ゲーコネ) 
 
 ## サイト概要
 
@@ -27,7 +27,9 @@
 - 好みのゲームでマルチプレイを始めたいと考えた時
 
 ## 設計書
-- 実装機能リスト https://docs.google.com/spreadsheets/d/19GNfV3btEDGy9j2QHQzXGrw9jA7YeKSHf6Bu0o7rIqw/edit?usp=sharing
+- 実装機能リスト https://docs.google.com/spreadsheets/d/19GNfV3btEDGy9j2QHQzXGrw9jA7YeKSHf6Bu0o7rIqw/edit#gid=885378170
+- テーブル定義書 https://docs.google.com/spreadsheets/d/1mzrBS0GwIIkRA4GQkHUDCRpW5l96xcrfCjm5oJ6lGyY/edit#gid=898810321
+- 
 
 ## 開発環境
 - OS：Linux(CentOS)
