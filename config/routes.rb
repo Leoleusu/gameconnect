@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  # root to
 
   namespace :admin do
     get 'posts/index'
