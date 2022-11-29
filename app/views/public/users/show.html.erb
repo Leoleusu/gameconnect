@@ -1,0 +1,6 @@
+<h1>ユーザーページ</h1>
+<div class="row">
+  <%= @user.name %>
+  <%= @user.introduction %>
+</div>
+<%= link_to "編集する",edit_public_user_path(@user),class: "btn" %>

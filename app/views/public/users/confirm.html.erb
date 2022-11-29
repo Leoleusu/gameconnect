@@ -1,0 +1,9 @@
+<h2 class="text">本当に退会しますか？</h2>
+<div class="row">
+  <p class="text">退会すると、このアカウントを使用することはできなくなります。</br>
+                    本当によろしいですか？</p>
+</div>
+<div class="row">
+  <%= link_to "退会しない",public_user_path(current_user),class: "btn btn-success" %>
+  <%= link_to "退会する",public_user_withdrawal_path, method: :patch,class: "btn btn-danger",data: {confirm: "本当に退会しますか？"} %>
+</div>

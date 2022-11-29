@@ -1,2 +1,7 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<h1>投稿一覧</h1>
+<div class="row">
+  <% @posts.each do |post| %>
+    <%= link_to post.user.name,public_user_path(post.user.id),class: "#" %>
+    <%= post.body,class: "#" %>
+  <% end %>
+</div>
