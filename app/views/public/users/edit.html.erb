@@ -2,11 +2,11 @@
 <div class="row">
   <%= form_with model: @user, url: public_user_path, local: true do |f| %>
     <div class="form-group">
-      <%= f.label :name %>
+      <%= f.label :"名前" %>
       <%= f.text_field :name %>
     </div>
     <div class="form-inline">
-      <%= f.label :introduction %>
+      <%= f.label :"自己紹介文" %>
       <%= f.text_area :introduction %>
     </div>
     <div class="action">

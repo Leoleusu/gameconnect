@@ -37,6 +37,7 @@ class Public::PostsController < ApplicationController
     else
       flash.now[:alert] = "変更に失敗しました。"
       render :new
+    end
   end
 
   def destroy

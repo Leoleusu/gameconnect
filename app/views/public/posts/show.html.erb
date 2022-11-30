@@ -1,2 +1,8 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<h1 class="text">ツイート本文</h1>
+<div class="row">
+  <%= link_to @post.user.name,public_user_path(@post.user),class: "#" %>
+  <%= @post.body %>
+</div>
+<div class="row">
+
+</div>
