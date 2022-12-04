@@ -22,7 +22,7 @@
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-collapse" id="navbar">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
               <div class="search-form">
@@ -34,7 +34,7 @@
                 <% end %>
               </div>
               <li class="nav-item">
-                <%= button_to "ログアウト",destroy_user_session_path,method: :delete %>
+                <%= link_to "ログアウト",destroy_user_session_path,method: :delete %>
               </li>
               <li class="nav-item">
                 <%= link_to "投稿一覧",public_posts_path,class: "btn" %>
@@ -50,7 +50,7 @@
                 <%= link_to "ログイン",new_user_session_path %>
               </li>
               <li class="nav-item">
-                <%= link_to 'ゲストログイン（閲覧用）', public_guest_sign_in_path, method: :post %>
+                <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
               </li>
               <% end %>
             </ul>
