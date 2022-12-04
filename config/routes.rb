@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
 
+  get"search" => "searches#$search"
+
   namespace :admin do
     resources :posts,only: [:index,:show,:edit,:destroy]
   end

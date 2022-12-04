@@ -1,8 +1,8 @@
 <h1>投稿一覧</h1>
-<%= link_to "投稿する",new_public_post,class: "btn" %>
+<%= link_to "投稿する",new_public_post_path,class: "btn" %>
 <div class="row">
   <% @posts.each do |post| %>
     <%= link_to post.user.name,public_user_path(post.user.id),class: "#" %>
-    <%= post.body,class: "#" %>
+    <%= link_to post.body,public_post_path(post.id),class: "#" %>
   <% end %>
 </div>

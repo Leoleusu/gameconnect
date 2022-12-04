@@ -1,8 +1,9 @@
-<h1 class="text">ツイート本文</h1>
+<h1 class="text">投稿本文</h1>
 <div class="row">
   <%= link_to @post.user.name,public_user_path(@post.user),class: "#" %>
   <%= @post.body %>
 </div>
 <div class="row">
-
+<%= link_to "編集する",edit_public_post_path(@post.id),class: "#" %>
+<%= link_to "削除する",public_post_path,method: :delete,class: "#" %>
 </div>

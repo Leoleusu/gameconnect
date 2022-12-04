@@ -1,6 +1,6 @@
 <h2 class="text">投稿する</h2>
 <div class="row">
-  <%= form_with model: @post, local: true do |f| %>
+  <%= form_with model: @post, url: public_posts_path,method: :post, local: true do |f| %>
   <div class="form-group">
     <%= f.label :"本文" %>
     <%= f.text_area :body %>
@@ -8,4 +8,5 @@
   <div class="action">
     <%= f.submit "投稿する" %>
   </div>
+  <% end %>
 </div>
