@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :posts
+    resources :favorites,only: [:create,:destroy]
     resources :comments,only: [:show,:edit,:destroy]
     resources :users,only: [:show,:edit,:update]
     get "user/confirm" => 'users#confirm' #退会確認画面
