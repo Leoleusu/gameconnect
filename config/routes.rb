@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    resources :posts
-    resources :favorites,only: [:create,:destroy]
-    resources :comments,only: [:show,:edit,:destroy]
+    resources :posts do
+      resource :favorites,only: [:create,:destroy]
+      resources :comments,only: [:show,:edit,:destroy]
+    end
     resources :users,only: [:show,:edit,:update]
     get "user/confirm" => 'users#confirm' #退会確認画面
     patch "user/withdrawal" => 'users#withdrawal' #論理削除用のルーティング

@@ -1,14 +1,18 @@
 class Public::FavoritesController < ApplicationController
 
   def create
-    @favorite = Favorite.new
-    @favorite.user_id = current_user
-    @favorite.post_id = Post.find(params[:id])
-    @favorite.save
+    post = Post.find(params[:post_id])
+    favorite = current_user.favorites.new(post_id: post.id)
+    favorite.save
     flash[:notice] = "いいね！"
-    redirect_to public_post_path(post_id)
+    redirect_to public_post_path(post.id)
   end
 
   def destroy
+    post = Post.find(params[:post_id])
+    favorite = current_user.favorites.find_by(post_id: post.id)
+    favorite.destroy
+    flash[:notice] = "やっぱりよくなかったね…"
+    redirect_to public_post_path(post.id)
   end
 end
