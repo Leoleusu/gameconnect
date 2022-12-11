@@ -1,0 +1,7 @@
+<h2 class="text">お気に入り一覧</h2>
+<div class = "row">
+  <% @favorite_posts.each do|fp| %>
+    <%= link_to fp.user.name,public_user_path(fp.user.id) %>
+    <%= link_to fp.body,public_post_path(fp.id) %>
+  <% end %>
+</div>

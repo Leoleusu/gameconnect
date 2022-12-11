@@ -21,3 +21,17 @@
   <% end %>
 <% end %>
 </div>
+<div class="row">
+  <h3 class="text">投稿する</h3>
+  <%= form_with model: @comment, url: public_post_comment_path, local: true do|f| %>
+    <%= f.label :"コメントする" %>
+    <%= f.text_area :body %>
+  <% end %>
+</div>
+<div class="row">
+  <h3 class="text">コメント一覧</h3>
+  <%= @comments.each do|c| %>
+    <%= c.user.name %>
+    <%= c.body %>
+  <% end %>
+</div>

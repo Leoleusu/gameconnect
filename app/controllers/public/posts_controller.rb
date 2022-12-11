@@ -10,6 +10,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = Comment.find(params[:])
   end
 
   def edit

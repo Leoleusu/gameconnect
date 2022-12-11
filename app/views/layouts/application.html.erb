@@ -45,6 +45,9 @@
               <li class="nav-item">
                 <%= link_to "ユーザーページ",public_user_path(current_user),class: "btn" %>
               </li>
+              <li class="nav-item">
+                <%= link_to "お気に入りリスト",favorites_public_user_path(current_user),class: "btn" %>
+              </li>
               <% else %>
               <li class="nav-item">
                 <%= link_to "ログイン",new_user_session_path %>
