@@ -4,8 +4,10 @@
   <%= @post.body %>
 </div>
 <div class="row">
-<%= link_to "編集する",edit_public_post_path(@post.id),class: "#" %>
-<%= link_to "削除する",public_post_path,method: :delete,class: "#" %>
+  <% if @post.user == current_user %>
+    <%= link_to "編集する",edit_public_post_path(@post.id),class: "#" %>
+    <%= link_to "削除する",public_post_path,method: :delete,class: "#" %>
+  <% end %>
 </div>
 <div class="row">
   <!--いいね機能-->
@@ -23,14 +25,18 @@
 </div>
 <div class="row">
   <h3 class="text">投稿する</h3>
-  <%= form_with model: @comment, url: public_post_comment_path, local: true do|f| %>
-    <%= f.label :"コメントする" %>
+  <%= form_with model:[@post,@comment], url: public_post_comments_path(@post.id), local: true do|f| %>
+  <div class="form-group">
     <%= f.text_area :body %>
+  </div>
+  <div class="action">
+    <%= f.submit "コメントする",class: "btn" %>
+  </div>
   <% end %>
 </div>
 <div class="row">
   <h3 class="text">コメント一覧</h3>
-  <%= @comments.each do|c| %>
+  <% @post.comment.each do|c| %>
     <%= c.user.name %>
     <%= c.body %>
   <% end %>

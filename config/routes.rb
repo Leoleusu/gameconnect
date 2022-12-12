@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :posts do
       resource :favorites,only: [:create,:destroy]
-      resources :comments,only: [:show,:edit,:destroy]
+      resources :comments,only: [:create,:edit,:destroy]
     end
     resources :users,only: [:show,:edit,:update] do
       member do
