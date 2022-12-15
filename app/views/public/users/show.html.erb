@@ -2,15 +2,15 @@
 <div class="row">
   <%= @user.name %>
   <% if @user.id != current_user.id? %>
-    <% if current_user.following?(user) %>
-      <%= link_to "フォローする",public_user_relationships_path(user.id),method: :destroy class: "btn" %>
+    <% if current_user.following?(@user) %>
+      <%= link_to "フォローを外す",public_user_relationships_path(@user.id),method: :destroy, class: "btn" %>
     <% else %>
-      <%= link_to "フォローする",public_user_relationships_path(user.id),method: :post class: "btn" %>
+      <%= link_to "フォローする",public_user_relationships_path(@user.id),method: :post, class: "btn" %>
     <% end %>
   <% end %>
   <%= @user.introduction %>
 </div>
-<% if @user.id == current_user.id? %>
+<% if current_user.id == @user.id? %>
   <%= link_to "編集する",edit_public_user_path(@user),class: "btn" %>
   <%= render 'public/shared/follow_list',resource: user %>
 <% end %>

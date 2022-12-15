@@ -35,7 +35,7 @@ class User < ApplicationRecord
     relationships.find_by(follower_id: user_id).destroy
   end
   #フォローしているかの判定
-  def following?(user_id)
+  def following?(user)
     followings.include?(user)
   end
 
