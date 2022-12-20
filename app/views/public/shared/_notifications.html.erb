@@ -1,0 +1,12 @@
+<% visitor = notification.visitor %>
+<% visited = notificaiton.visited %>
+<div class="row col-md-6 mx-auto form-inline">
+  <span class="#"><%= link_to visitor.name,public_user_path(visitor) %></span><p class="text">さんが</p>
+  <% case notification.action %>
+    <% when "follow" then %>
+      <p class="text">あなたをフォローしました。</p>
+    <% when "favorite" then %>
+      <p class="text"><%= link_to "あなたの投稿",public_post_path(notification.post) %>にいいねしました。</p>
+    <% when "comment" then %>
+      
+</div>

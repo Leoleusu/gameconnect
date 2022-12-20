@@ -21,9 +21,10 @@ Rails.application.routes.draw do
         get :favorites
       end
     end
+    resources :notifications, only: :index
     get "user/confirm" => 'users#confirm' #退会確認画面
     patch "user/withdrawal" => 'users#withdrawal' #論理削除用のルーティング
-    post 'guest_sign_in' => 'sessions#guest_sign_in'
+    post 'guest_sign_in' => 'sessions#guest_sign_in' #ゲストログイン用のルーティング
   end
 
   devise_for :admins

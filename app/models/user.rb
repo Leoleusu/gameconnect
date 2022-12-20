@@ -16,6 +16,10 @@ class User < ApplicationRecord
          has_many :followings, through: :relationships, source: :follow
          has_many :followers, through: :reverse_of_relationships, source: :follower
 
+         #通知関係
+         has_many :active_notifications, class_name: "Notifications", foreign_key: "visitor_id", dependent: :destroy
+         has_many :passive_notifications, class_name: "Notifications", foreign_key: "visited_id", dependent: :destroy
+
   #ゲストユーザーを作る
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -37,6 +41,18 @@ class User < ApplicationRecord
   #フォローしているかの判定
   def following?(user)
     followings.include?(user)
+  end
+
+  #フォロー時の通知を作成する
+  def create_notification_follow(current_user)
+    temp = Notifications.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, "follow"])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: "follow"
+      )
+      notification.save if notification.valid?
+    end
   end
 
 end
