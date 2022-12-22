@@ -8,5 +8,14 @@
     <% when "favorite" then %>
       <p class="text"><%= link_to "あなたの投稿",public_post_path(notification.post) %>にいいねしました。</p>
     <% when "comment" then %>
-      
+      <% if notificaiton.post.user_id == visited.id %>
+        <p class="text"><%= link_to "あなたの投稿",public_post_path(notificaiton.post) %></p>
+      <% else %>
+        <p><%= link_to notificaiton.post.user.name + "さんの投稿",public_post_path(notificaiton.post) %></p>
+      <% end %>
+    <p class="text">にコメントしました。</p>
+    <p class="text"><%= Comment.find_by(id: notificaiton.comment_id)&.comment %></p>
+    <p class="small text-muted text-right"><%= time_ago_in_words(notificaiton.created_at).upcase  %></p>
+  <% end %>
+  
 </div>
