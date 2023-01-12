@@ -3,6 +3,6 @@ class Notification < ApplicationRecord
   belongs_to :post, optional: true
   belongs_to :comment, optional: true
 
-  belongs_to :visitor, class_name: "User",foreign_key: "visitor_id", optional: true
-  belongs_to :visited, class_name: "User",foreign_key: "visited_id", optional: true
+  belongs_to :sender, class_name: "User",foreign_key: "sender_id", optional: true
+  belongs_to :receiver, class_name: "User",foreign_key: "receiver_id", optional: true
 end
