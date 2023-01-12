@@ -3,8 +3,8 @@ class Public::RelationshipsController < ApplicationController
   #フォローする時
   def create
     @user = User.find(params[:user_id])
-    current_user.follow(params[:user_id])
-    @user.create_notification_follow(current_user)
+    current_user.follow(@user.id)
+    @user.create_notification_follow(current_user, @user.id)
     flash[:notice] = "フォローしました。"
     redirect_to request.referer
   end

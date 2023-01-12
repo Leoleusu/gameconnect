@@ -1,9 +1,10 @@
 <h1>ユーザーページ</h1>
 <div class="row">
   <%= @user.name %>
-  <% if @user != current_user %>
+  <% if current_user != @user %>
+  <%# byebug %>
     <% if current_user.following?(@user) %>
-      <%= link_to "フォローを外す",public_user_relationships_path(@user.id),method: :destroy, class: "btn" %>
+      <%= link_to "フォローを外す",public_user_relationships_path(@user.id),method: :delete, class: "btn" %>
     <% else %>
       <%= link_to "フォローする",public_user_relationships_path(@user.id),method: :post, class: "btn" %>
     <% end %>

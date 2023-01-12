@@ -5,7 +5,7 @@ class Notifications < ActiveRecord::Migration[6.1]
       t.references :receiver,foreign_key: { to_table: "users" }
       t.references :post,foreign_key: { to_table: "posts" }
       t.references :favorite,foreign_key: { to_table: "favorites" }
-      t.integer :action, null: false, default: 0
+      t.string :action, null: false
       t.boolean :is_check, null: false, default: false
       t.timestamps
     end
