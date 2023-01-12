@@ -6,7 +6,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :posts,only: [:index,:show,:edit,:destroy]
+    resources :users,only: [:index,:show,:edit,:destroy]
+    resources :comments,only: [:index,:show,:edit,:destroy]
   end
+
+  devise_for :admin,controllers: {
+    sessions: "admin/sessions"
+  }
 
   namespace :public do
     resources :posts do
@@ -26,8 +32,6 @@ Rails.application.routes.draw do
     patch "user/withdrawal" => 'users#withdrawal' #論理削除用のルーティング
     post 'guest_sign_in' => 'sessions#guest_sign_in' #ゲストログイン用のルーティング
   end
-
-  devise_for :admins
 
  devise_scope :user do
    post "users/guest_sign_in" => "public/sessions#guest_sign_in"
