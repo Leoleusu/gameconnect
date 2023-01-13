@@ -72,12 +72,12 @@ ActiveRecord::Schema.define(version: 2022_11_22_134539) do
     t.integer "sender_id"
     t.integer "receiver_id"
     t.integer "post_id"
-    t.integer "favorite_id"
+    t.integer "comment_id"
     t.string "action", null: false
     t.boolean "is_check", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["post_id"], name: "index_notifications_on_post_id"
     t.index ["receiver_id"], name: "index_notifications_on_receiver_id"
     t.index ["sender_id"], name: "index_notifications_on_sender_id"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2022_11_22_134539) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
-  add_foreign_key "notifications", "favorites"
+  add_foreign_key "notifications", "comments"
   add_foreign_key "notifications", "posts"
   add_foreign_key "notifications", "users", column: "receiver_id"
   add_foreign_key "notifications", "users", column: "sender_id"
