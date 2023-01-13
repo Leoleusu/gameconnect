@@ -1,2 +1,25 @@
 <h1>ユーザー一覧</h1>
-<%= @users.each do %>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>自己紹介</th>
+      <th>会員ステータス</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u |%>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.name %></td>
+        <td><%= u.introduction %></td>
+        <td><%= u.is_deleted %></td>
+        <td><%= link_to "詳細",admin_user_path(u.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

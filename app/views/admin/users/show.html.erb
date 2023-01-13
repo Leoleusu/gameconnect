@@ -1,0 +1,31 @@
+<h1>ユーザー情報</h1>
+<div class="container">
+  <%= form_with model: @user, url: admin_user_path,local: true do |f| %>
+    <div class="form-inline">
+      <%= f.label :"ユーザー  " %>
+      <%= @user.id %>
+    </div>
+    <div classw="form-inline">
+      <%= f.label :"メールアドレス" %>
+      <%= @user.email %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"名前" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-inline">
+      <%= f.label :"自己紹介文" %>
+      <%= f.text_area :introduction %>
+    </div>
+    <div class="form-group">
+      <%= f.label :"会員ステータス" %>
+      <%= f.label :"有効" %>
+      <%= f.radio_button(:is_deleted, false) %>
+      <%= f.label :"退会" %>
+      <%= f.radio_button(:is_deleted, true) %>
+    </div>
+    <div class="action">
+      <%= f.submit :"変更する" %>
+    </div>
+  <% end %>
+</div>
