@@ -22,7 +22,7 @@
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="navbar-collapse" id="navbar">
+          <div class="navbar-collapse" id="Navbar">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <div class="search-form">
@@ -79,9 +79,9 @@
     </header>
     <div class="container">
       <% if flash[:notice] %>
-        <p class="text-success"><%= notice %></p>
+        <p class="text-success text-center"><%= notice %></p>
       <% elsif flash[:alert] %>
-        <p class="text-danger"><%= alert %></p>
+        <p class="text-danger text-center"><%= alert %></p>
       <% end %>
       <%= yield %>
     </div>
