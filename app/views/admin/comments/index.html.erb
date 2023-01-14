@@ -1,0 +1,23 @@
+<h1>コメント一覧</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>投稿ユーザー</th>
+        <th>本文</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |c| %>
+        <tr>
+          <td><%= c.id %></td>
+          <td><%= c.user.name %></td>
+          <td><%= c.cody %></td>
+          <td><%= link_to "詳細",admin_comment_path(c.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -34,18 +34,22 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "変更に成功しました。"
-      redirect_to public_posts_path
+      redirect_to public_post_path(@post)
     else
       flash.now[:alert] = "変更に失敗しました。"
-      render :new
+      render :edit
     end
   end
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    flash[:notice] = "削除に成功しました。"
-    redirect_to public_posts_path
+    if post.destroy
+      flash[:notice] = "削除しました。"
+      redirect_to public_posts_path
+    else
+      flash.now[:alert] = "削除に失敗しました。"
+      render :show
+    end
   end
 
   private

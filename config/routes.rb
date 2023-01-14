@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   get"search" => "searches#$search"
 
   namespace :admin do
-    resources :posts,only: [:index,:show,:edit,:destroy]
+    resources :posts,only: [:index,:show,:update,:destroy]
     resources :users,only: [:index,:show,:update]
-    resources :comments,only: [:index,:show,:edit,:destroy]
+    resources :comments,only: [:index,:show,:destroy]
   end
 
   devise_for :admin,controllers: {
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :posts do
       resource :favorites,only: [:create,:destroy]
-      resources :comments,only: [:create,:edit,:destroy]
+      resources :comments,only: [:create,:edit,:update,:destroy]
     end
     resources :users,only: [:show,:edit,:update] do
       resource :relationships, only: [:create,:destroy]

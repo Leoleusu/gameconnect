@@ -1,0 +1,12 @@
+<h1>コメント情報</h1>
+<div class="container">
+  <table class="table">
+    <tr><th>コメントID</th><td><%= @comment.id %></td></tr>
+    <tr><th>投稿ユーザー</th><td><%= @comment.user.name %></td></tr>
+    <tr><th>コメント本文</th><td><%= @comment.body %></td></tr>
+    <tr><th></th></tr>
+  </table>
+</div>
+<div class="container">
+  <%= link_to "削除する",admin_comment_path(@comment),method: :delete,class: "btn" %>
+</div>
