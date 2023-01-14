@@ -36,8 +36,15 @@
 </div>
 <div class="row">
   <h3 class="text">コメント一覧</h3>
-  <% @post.comment.each do|c| %>
-    <%= c.user.name %>
-    <%= c.body %>
+  <div class="row">
+    <% @post.comment.each do|c| %>
+    <div class="form-group">
+      <%= c.user.name %>
+      <%= c.body %>
+      <% if current_user.id == c.user_id %>
+        <%= link_to "削除する",public_post_comment_path(@post, c),method: :delete,class: "btn" %>
+      <% end %>
+    </div>
   <% end %>
+  </div>
 </div>

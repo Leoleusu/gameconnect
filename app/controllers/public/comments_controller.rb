@@ -4,7 +4,8 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.post_id = post.id
     comment.save
-    post.create_notification_comment(current_user)
+    #byebug
+    comment.create_notification_comment(current_user)
     flash[:notice] = "コメントしました"
     redirect_to public_post_path(post.id)
   end
@@ -25,9 +26,10 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
+    post = Post.find(params[:post_id])
     comment = Comment.find(params[:id])
     if comment.destroy
-      redirect_to admin_comments_path
+      redirect_to public_post_path(post)
       flash[:notice] = "コメントを削除しました。"
     else
       render :show

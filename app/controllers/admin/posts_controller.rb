@@ -23,7 +23,7 @@ class Admin::PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.destroy
       flash[:notice] = "削除しました。"
-      redirect_to public_posts_path
+      redirect_to admin_posts_path
     else
       render :show
       flash.now[:alert] = "削除に失敗しました。"

@@ -1,2 +1,10 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<h1>投稿詳細</h1>
+<div class="container">
+  <table class="table">
+    <tr><th>投稿ID</th><td><%= @post.id %></td></tr>
+    <tr><th>投稿ユーザー</th><td><%= link_to @post.user.name,admin_user_path(@post.user) %></td></tr>
+    <tr><th>投稿内容</th><td><%= @post.body %></td></tr>
+    <tr></tr>
+  </table>
+  <%= link_to "削除",admin_post_path,method: :delete %>
+</div>
