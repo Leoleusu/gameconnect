@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :posts,only: [:index,:show,:update,:destroy]
     resources :users,only: [:index,:show,:update]
     resources :comments,only: [:index,:show,:destroy]
+    resources :searches,only: :index
   end
 
   devise_for :admin,controllers: {
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
       resource :favorites,only: [:create,:destroy]
       resources :comments,only: [:create,:edit,:update,:destroy]
     end
+    resources :searches,only: :index
     resources :users,only: [:show,:edit,:update] do
       resource :relationships, only: [:create,:destroy]
       get'followings' => 'relationships#followings', as: 'followings'

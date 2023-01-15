@@ -28,4 +28,19 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  #検索条件によって検索方法を切り替える
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @post = Post.where("body LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @post = Post.where("body LIKE?", "#{word}%")
+    elsif search == "backward_match"
+      @post = Post.where("body LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      @post = Post.where("body LIKE?", "%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
+
 end
