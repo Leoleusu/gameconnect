@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
 
-  get"search" => "searches#$search"
+
 
   namespace :admin do
     resources :posts,only: [:index,:show,:update,:destroy]
     resources :users,only: [:index,:show,:update]
     resources :comments,only: [:index,:show,:destroy]
     resources :searches,only: :index
+    get"search" => "searches#search"
   end
 
   devise_for :admin,controllers: {
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
       resources :comments,only: [:create,:edit,:update,:destroy]
     end
     resources :searches,only: :index
+    get"search" => "searches#search"
     resources :users,only: [:show,:edit,:update] do
       resource :relationships, only: [:create,:destroy]
       get'followings' => 'relationships#followings', as: 'followings'

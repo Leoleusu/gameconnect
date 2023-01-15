@@ -1,8 +1,10 @@
 <h2 class="text">通知一覧</h2>
 <div class="row">
-  <% notification = @notifications.where.not(sender_id: current_user.id) %>
+  <% notifications = @notifications.where.not(sender_id: current_user.id) %>
   <% if notifications.exists? %>
-    <%= render "public/shared/notifications" %>
+    <% notifications.each do |notification| %>
+      <%= render "notification", notification: notification %>
+    <% end %>
     <%= paginate notifications %>
   <% else %>
     <p class="text">通知はありません。</p>

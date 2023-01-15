@@ -1,7 +1,6 @@
-<h3 class="text">フォロー一覧</h3>
+<h3 class="text">フォロワー一覧</h3>
 <div class="row">
   <% if users.exists? %>
-    <% users.each do |u| %>
       <table class="table">
         <thead>
           <tr>
@@ -11,15 +10,16 @@
           </tr>
         </thead>
         <tbody>
+          <% users.each do |u| %>
           <tr>
             <td><%= u.name %></td>
             <td>フォロー数：    <%= u.followings.count %></td>
             <td>フォロワー数：  <%= u.followers.count %></td>
           </tr>
+          <% end %>
         </tbody>
       </table>
-    <% end %>
   <% else %>
-    <p class="text">あなたがフォローしているユーザーはいません。</p>
+    <p class="text">あなたをフォローしているユーザーはいません。</p>
   <% end %>
 </div>

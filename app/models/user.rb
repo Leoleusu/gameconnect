@@ -13,8 +13,8 @@ class User < ApplicationRecord
          has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 
          #フォロー一覧・フォロワー一覧画面に使う
-         has_many :followings, through: :relationships, source: :follow
-         has_many :followers, through: :reverse_of_relationships, source: :follower
+         has_many :followings, through: :relationships, source: :follower
+         has_many :followers, through: :reverse_of_relationships, source: :follow
 
          #通知関係
          has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id", dependent: :destroy
@@ -40,7 +40,8 @@ class User < ApplicationRecord
   end
   #フォローしているかの判定
   def following?(user)
-    !Relationship.find_by(follower_id: user.id).nil?
+    followings.include?(user)
+    # !Relationship.find_by(follower_id: user.id).nil?
   end
 
   #フォロー時の通知を作成する

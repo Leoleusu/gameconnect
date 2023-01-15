@@ -1,4 +1,4 @@
-class SearchesController < ApplicationController
+class Admin::SearchesController < ApplicationController
   before_action :authenticate_user!
 
   def search
@@ -9,8 +9,6 @@ class SearchesController < ApplicationController
     else
       @posts = Post.looks(params[:search],params[:word])
     end
-
-
   end
 
 end

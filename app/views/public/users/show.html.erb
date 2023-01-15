@@ -4,6 +4,7 @@
   <% if current_user != @user %>
   <%# byebug %>
     <% if current_user.following?(@user) %>
+    <% pp current_user.following?(@user) %>
       <%= link_to "フォローを外す",public_user_relationships_path(@user.id),method: :delete, class: "btn" %>
     <% else %>
       <%= link_to "フォローする",public_user_relationships_path(@user.id),method: :post, class: "btn" %>
@@ -13,5 +14,6 @@
 </div>
 <% if current_user == @user %>
   <%= link_to "編集する",edit_public_user_path(@user),class: "btn" %>
-  <%#= render 'public/shared/follow_list',resource: user %>
+  <%= render 'public/shared/follow_list',users: @user.followings %>
+  <%= render 'public/shared/follower_list',users: @user.followers %>
 <% end %>
