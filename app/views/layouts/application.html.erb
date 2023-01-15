@@ -13,10 +13,10 @@
     <%= csp_meta_tag %>
   </head>
 
-  <body class="d-flex flex-column">
+  <body class="d-flex flex-column h-100">
     <header>
-      <div class="container-fiuid">
-        <div class="row-fiuid">
+      <div class="container-fluid">
+        <div class="row-fuid">
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <a class="navbar p-3 m-3" href="/">title</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -27,55 +27,8 @@
               <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
                   <%= render 'public/shared/search' %>
-                  <li class="nav-item">
-                    <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "投稿一覧",public_posts_path,class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "投稿する",new_public_post_path,class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "ユーザーページ",public_user_path(current_user),class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "お気に入りリスト",favorites_public_user_path(current_user),class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "通知一覧",public_notifications_path,class: "btn" %>
-                  </li>
                 <% elsif admin_signed_in? %>
-                  <div class="search-form">
-                    <%= form_with url: search_path, local: true do |f| %>
-                    <%= f.text_field :word %>
-                    <%= f.select :range, options_for_select([["User"],["Post"]]) %>
-                    <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],["後方一致","backward_match"],["部分一致","partial_match"]]) %>
-                    <%= f.submit "検索",class: "btn btn-primary" %>
-                    <% end %>
-                  </div>
-                  <li class="nav-item">
-                    <%= link_to "ユーザー一覧",admin_users_path,class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "投稿一覧",admin_posts_path,class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "コメント一覧",admin_comments_path,class: "btn" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "管理者ログアウト",destroy_admin_session_path,method: :delete,class: "btn" %>
-                  </li>
-                <% else %>
-                  <li class="nav-item">
-                    <%= link_to "ログイン",new_user_session_path %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "管理者ログイン",new_admin_session_path %>
-                  </li>
+                  <%= render 'admin/shared/search' %>
                 <% end %>
               </ul>
             </div>
@@ -83,13 +36,64 @@
         </div>
       </div>
     </header>
-    <div class="container">
+    <div class="row-fluld">
       <% if flash[:notice] %>
         <p class="text-success text-center"><%= notice %></p>
       <% elsif flash[:alert] %>
         <p class="text-danger text-center"><%= alert %></p>
       <% end %>
-      <%= yield %>
+      <div class="sidebar-fixed">
+        <nav class="bg-light col-3 h-100">
+          <ul class="nav flex-column">
+            <% if user_signed_in? %>
+              <li class="nav-item md-2">
+                <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "btn" %>
+              </li>
+              <li class="nav-item md-2">
+                <%= link_to "投稿一覧",public_posts_path,class: "btn" %>
+              </li>
+              <li class="nav-item md-2">
+                <%= link_to "投稿する",new_public_post_path,class: "btn" %>
+              </li>
+              <li class="nav-item md-2">
+                <%= link_to "ユーザーページ",public_user_path(current_user),class: "btn" %>
+              </li>
+              <li class="nav-item md-2">
+                <%= link_to "お気に入りリスト",favorites_public_user_path(current_user),class: "btn" %>
+              </li>
+              <li class="nav-item md-2">
+                <%= link_to "通知一覧",public_notifications_path,class: "btn" %>
+              </li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "ユーザー一覧",admin_users_path,class: "btn" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "投稿一覧",admin_posts_path,class: "btn" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "コメント一覧",admin_comments_path,class: "btn" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "管理者ログアウト",destroy_admin_session_path,method: :delete,class: "btn" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "ログイン",new_user_session_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "管理者ログイン",new_admin_session_path %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+      <main class="bg-light col-9">
+        <%= yield %>
+      </main>
     </div>
   </body>
 </html>
