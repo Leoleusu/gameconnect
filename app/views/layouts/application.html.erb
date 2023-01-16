@@ -4,8 +4,6 @@
     <title>Gameconnect</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <script src="https://kit.fontawesome.com/c44cf8e6f4.js" crossorigin="anonymous"></script>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,10 +11,10 @@
     <%= csp_meta_tag %>
   </head>
 
-  <body class="d-flex flex-column h-100">
+  <body class="d-flex flex-column h-100 w-100">
     <header>
-      <div class="container-fluid">
-        <div class="row-fuid">
+      <div class="container-fluid bg-dark">
+        <div class="row-fluid">
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <a class="navbar p-3 m-3" href="/">title</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -24,9 +22,11 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse" id="Navbar">
-              <ul class="navbar-nav ml-auto">
+              <ul class="navbar-nav m-auto">
                 <% if user_signed_in? %>
                   <%= render 'public/shared/search' %>
+                  <%= link_to public_notifications_path,class: "nav-link text-secondary ml-5" do %>
+                  <i class="fas fa-bell fa-2x"></i><% end %>
                 <% elsif admin_signed_in? %>
                   <%= render 'admin/shared/search' %>
                 <% end %>
@@ -36,64 +36,74 @@
         </div>
       </div>
     </header>
-    <div class="row-fluld">
-      <% if flash[:notice] %>
-        <p class="text-success text-center"><%= notice %></p>
-      <% elsif flash[:alert] %>
-        <p class="text-danger text-center"><%= alert %></p>
-      <% end %>
-      <div class="sidebar-fixed">
-        <nav class="bg-light col-3 h-100">
-          <ul class="nav flex-column">
-            <% if user_signed_in? %>
-              <li class="nav-item md-2">
-                <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "btn" %>
-              </li>
-              <li class="nav-item md-2">
-                <%= link_to "投稿一覧",public_posts_path,class: "btn" %>
-              </li>
-              <li class="nav-item md-2">
-                <%= link_to "投稿する",new_public_post_path,class: "btn" %>
-              </li>
-              <li class="nav-item md-2">
-                <%= link_to "ユーザーページ",public_user_path(current_user),class: "btn" %>
-              </li>
-              <li class="nav-item md-2">
-                <%= link_to "お気に入りリスト",favorites_public_user_path(current_user),class: "btn" %>
-              </li>
-              <li class="nav-item md-2">
-                <%= link_to "通知一覧",public_notifications_path,class: "btn" %>
-              </li>
-            <% elsif admin_signed_in? %>
-              <li class="nav-item">
-                <%= link_to "ユーザー一覧",admin_users_path,class: "btn" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "投稿一覧",admin_posts_path,class: "btn" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "コメント一覧",admin_comments_path,class: "btn" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "管理者ログアウト",destroy_admin_session_path,method: :delete,class: "btn" %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "ログイン",new_user_session_path %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "管理者ログイン",new_admin_session_path %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <% if flash[:notice] %>
+          <p class="text-success text-center"><%= notice %></p>
+        <% elsif flash[:alert] %>
+          <p class="text-danger text-center"><%= alert %></p>
+        <% end %>
       </div>
-      <main class="bg-light col-9">
-        <%= yield %>
-      </main>
-    </div>
+      <div class="d-flex flex-column flex-shrink-0 p-3 bg-secondary">
+        <ul class="nav nav-pills flex-column md-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path,method: :delete,class: "nav-link text-light" do %>
+              <i class="fas fa-right-from-bracket"></i>ログアウト
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to public_posts_path,class: "nav-link text-light" do %>
+              <i class="fas fa-book"></i>投稿一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_public_post_path,class: "nav-link text-light" do %>
+              <i class="fas fa-pen"></i>投稿する
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to public_user_path(current_user),class: "nav-link text-light" do %>
+              <i class="fas fa-house"></i>マイページ
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to favorites_public_user_path(current_user),class: "nav-link text-light" do %>
+              <i class="fas fa-heart"></i>お気に入り
+              <% end %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "ユーザー一覧",admin_users_path,class: "btn" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "投稿一覧",admin_posts_path,class: "btn" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "コメント一覧",admin_comments_path,class: "btn" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "管理者ログアウト",destroy_admin_session_path,method: :delete,class: "btn" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "ログイン",new_user_session_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "管理者ログイン",new_admin_session_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+        <main class="bg-light flex-column">
+          <%= yield %>
+        </main>
+     </div>
+
   </body>
 </html>
+
