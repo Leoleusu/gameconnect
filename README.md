@@ -1,4 +1,4 @@
-#  ゲームコネクト(ゲーコネ) 
+#  ゲームコネクト(ゲーコネ)
 
 ## サイト概要
 
@@ -17,19 +17,19 @@
 自分と好みが近しい人達を気楽に探せるサービスがあれば良いなと思い、このテーマを選定しました。
 
 ### ターゲットユーザ
-- 新しくソシャゲやゲームを始めた方
+- 新しくソ—シャルゲームやゲームを始めた方
 - マルチプレイ前提のゲームに関心を持っている方
 - マルチプレイが可能なゲームで誰かと一緒に遊んでみたいと考えた方
 
 ### 主な利用シーン
 - 新しいゲームが発売・サービス開始された時
-- 新規のソシャゲが始まった時
+- 新規のソーシャルゲームが始まった時
 - 好みのゲームでマルチプレイを始めたいと考えた時
 
 ## 設計書
 - 実装機能リスト https://docs.google.com/spreadsheets/d/19GNfV3btEDGy9j2QHQzXGrw9jA7YeKSHf6Bu0o7rIqw/edit#gid=885378170
 - テーブル定義書 https://docs.google.com/spreadsheets/d/1mzrBS0GwIIkRA4GQkHUDCRpW5l96xcrfCjm5oJ6lGyY/edit#gid=898810321
-- 
+- テスト仕様書   https://docs.google.com/spreadsheets/d/1hJp1-PK3IuHtDNIu2aFY8wVgIXmQH3iSj-cPjowlr4c/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)

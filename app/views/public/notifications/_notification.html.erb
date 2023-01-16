@@ -14,7 +14,8 @@
         <p><%= link_to notification.post.user.name + "さんの投稿",public_post_path(notification.post) %></p>
       <% end %>
     <p class="text">にコメントしました。</p>
-    <p class="text"><%= Comment.find_by(id: notification.comment_id)&.comment %></p>
+    <% com = Comment.find_by(id: notification.comment_id) %>
+    <p class="text"><%= com.body %></p>
     <p class="small text-muted text-right"><%= time_ago_in_words(notification.created_at).upcase  %></p>
   <% end %>
 
