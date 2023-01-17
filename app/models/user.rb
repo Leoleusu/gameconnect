@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+         has_one_attached :image
+
          has_many :posts,dependent: :destroy
          has_many :favorites,dependent: :destroy
          has_many :comments,dependent: :destroy
@@ -19,6 +21,15 @@ class User < ApplicationRecord
          #通知関係
          has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id", dependent: :destroy
          has_many :passive_notifications, class_name: "Notification", foreign_key: "receiver_id", dependent: :destroy
+
+  #ユーザーのプロフィール画像
+  def get_image(width,height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/default.png')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/*')
+    end
+    image.variant(resize_to_limit: [width, height]).processed
+  end
 
   #ゲストユーザーを作る
   def self.guest

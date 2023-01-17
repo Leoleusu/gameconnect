@@ -1,6 +1,18 @@
-<h1>ユーザーページ</h1>
+<h1 class="text-center">ユーザーページ</h1>
 <div class="row">
-  <%= @user.name %>
+  <div class="card md-3 text-center",style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-3 w-auto">
+        <%= image_tag @user.get_image(150,150),class: "bd-placeholder-img w-auto h-auto" %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body text-center">
+          <h3 class="card-title"><%= @user.name %></h3>
+          <p class="card-text"><%= @user.introduction %></p>
+        </div>
+      </div>
+    </div>
+  </div>
   <% if current_user != @user %>
   <%# byebug %>
     <% if current_user.following?(@user) %>
@@ -10,7 +22,7 @@
       <%= link_to "フォローする",public_user_relationships_path(@user.id),method: :post, class: "btn" %>
     <% end %>
   <% end %>
-  <%= @user.introduction %>
+
 </div>
 <% if current_user == @user %>
   <%= link_to "編集する",edit_public_user_path(@user),class: "btn" %>
