@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
 
-
-
   namespace :admin do
     resources :posts,only: [:index,:show,:update,:destroy]
     resources :users,only: [:index,:show,:update]
