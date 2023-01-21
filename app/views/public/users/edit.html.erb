@@ -1,20 +1,23 @@
-<h2 class="#">編集する</h2>
-<div class="row">
+<h2 class="text-center">編集する</h2>
+<div class="row-fluid">
   <%= form_with model: @user, url: public_user_path, local: true do |f| %>
-    <div class="form-group">
-      <%= f.label :"名前" %>
-      <%= f.text_field :name %>
+    <label class="form-image offset-md-4">
+      <%= f.file_field :image,placeholder:"プロフィール画像",accept:"image/*", class:"hidden offset-md-3" %>
+    </label>
+    <div class="form-group offset-md-4">
+      <%= f.label :"名前",class: "col-2" %>
+      <%= f.text_field :name,class: "offset-md-1" %>
     </div>
-    <div class="form-inline">
-      <%= f.label :"自己紹介文" %>
-      <%= f.text_area :introduction %>
+    <div class="form-group offset-md-4 d-flex align-items-center">
+      <%= f.label :"自己紹介文",class: "col-2" %>
+      <%= f.text_area :introduction,class: "offset-md-1" %>
     </div>
-    <div class="action">
-      <%= f.submit :"保存する" %>
+    <div class="action offset-md-6">
+      <%= f.submit :"保存する",class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
-<div class="row">
-  <%= link_to "戻る",public_user_path(current_user),class: "btn"%>
-  <%= link_to "退会する",public_user_confirm_path,class: "btn"%>
+<div class="row-fluid offset-md-4 pt-3">
+  <%= link_to "戻る",public_user_path(current_user),class: "btn btn-success col-2 pr-5" %>
+  <%= link_to "退会する",public_user_confirm_path,class: "btn btn-danger col-2 offset-md-1" %>
 </div>

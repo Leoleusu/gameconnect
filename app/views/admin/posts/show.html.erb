@@ -1,10 +1,19 @@
-<h1>投稿詳細</h1>
-<div class="container">
-  <table class="table">
+<h1 class="text-center">投稿詳細</h1>
+<div class="row-fluid">
+  <table class="table col-8 offset-md-2">
     <tr><th>投稿ID</th><td><%= @post.id %></td></tr>
-    <tr><th>投稿ユーザー</th><td><%= link_to @post.user.name,admin_user_path(@post.user) %></td></tr>
+    <tr><th>投稿ユーザー</th><td><%= link_to admin_user_path(@post.user) do %>
+    <%= image_tag @post.user.get_image(30,30) %><%= @post.user.name %>
+    <% end %></td></tr>
     <tr><th>投稿内容</th><td><%= @post.body %></td></tr>
-    <tr></tr>
+    <tr><th>コメント数</th><td><%= @post.comment.count %></td></tr>
   </table>
-  <%= link_to "削除",admin_post_path,method: :delete %>
+  <table class="table table-hover col-8 offset-md-2">
+    <% @post.comment.each do |pc| %>
+      <tr class="moves-contents" onclick='window.location="/admin/comments/<%= pc.id %>"' role="link">
+        <th><%= image_tag pc.user.get_image(30,30) %><%= pc.user.name %></th><td><%= pc.body %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "投稿を削除する",admin_post_path,method: :delete,class: "offset-md-6" %>
 </div>

@@ -1,12 +1,12 @@
-<h2>検索結果</h2>
+<h2 class="text-center pb-5">検索結果</h2>
 <%# byebug %>
-<table class="table table-hover table-inverse">
+<table class="table table-hover table-inverse col-8 offset-md-2">
   <!--検索対象モデルがUserの時-->
   <% if @range == "User" %>
     <tbody>
       <% @users.each do |u| %>
-        <tr>
-          <td><%= link_to u.name,public_user_path(u) %></td>
+        <tr class="moves-contents" onclick='window.location="/publics/users/<%= u.id %>"' role="link">
+          <td><%= u.name %></td>
           <td><%= u.introduction %></td>
         </tr>
       <% end %>
@@ -15,9 +15,9 @@
     <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
     <tbody>
       <% @posts.each do |po| %>
-        <tr>
-          <td><%= link_to po.user.name,public_user_path(po.user_id) %></td>
-          <td><%= link_to po.body,public_post_path(po) %></td>
+        <tr class="moves-contents" onclick='window.location="/public/posts/<%= po.id %>"' role="link">
+          <td><%= po.user.name %></td>
+          <td><%= po.body %></td>
         </tr>
       <% end %>
     </tbody>

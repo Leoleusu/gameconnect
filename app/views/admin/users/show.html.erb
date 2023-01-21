@@ -1,31 +1,36 @@
-<h1>ユーザー情報</h1>
-<div class="container">
+<h1 class="text-center">ユーザー情報</h1>
+<div class="row-fluid pt-3">
   <%= form_with model: @user, url: admin_user_path,local: true do |f| %>
-    <div class="form-inline">
-      <%= f.label :"ユーザー  " %>
+    <div class="form-group">
+      <%= f.label :"ユーザー  ",class: "col-4 offset-md-2" %>
       <%= @user.id %>
     </div>
-    <div classw="form-inline">
-      <%= f.label :"メールアドレス" %>
+    <div classw="form-group justify-content-center">
+      <%= f.label :"メールアドレス",class: "col-4 offset-md-2" %>
       <%= @user.email %>
     </div>
-    <div class="form-group">
-      <%= f.label :"名前" %>
+    <div class="form-group justify-content-center">
+      <%= f.label :"プロフィール画像",class:"col-4 offset-md-2" %>
+      <%= f.file_field :image,class: "img_field",accept:"image/*" %>
+      <%#= image_tag @user, :image, fallback: 'default.png', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev' %>
+    </div>
+    <div class="form-group justify-content-center">
+      <%= f.label :"名前",class: "col-4 offset-md-2" %>
       <%= f.text_field :name %>
     </div>
-    <div class="form-inline">
-      <%= f.label :"自己紹介文" %>
+    <div class="form-group justify-content-center">
+      <%= f.label :"自己紹介文",class: "col-4 offset-md-2" %>
       <%= f.text_area :introduction %>
     </div>
-    <div class="form-group">
-      <%= f.label :"会員ステータス" %>
+    <div class="form-group justify-content-center">
+      <%= f.label :"会員ステータス",class: "col-4 offset-md-2" %>
       <%= f.label :"有効" %>
       <%= f.radio_button(:is_deleted, false) %>
       <%= f.label :"退会" %>
       <%= f.radio_button(:is_deleted, true) %>
     </div>
-    <div class="action">
-      <%= f.submit :"変更する" %>
+    <div class="action justify-content-center">
+      <%= f.submit :"変更する",class: "offset-md-6" %>
     </div>
   <% end %>
 </div>

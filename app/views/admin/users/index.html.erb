@@ -1,23 +1,21 @@
-<h1>ユーザー一覧</h1>
+<h1 class="text-center">ユーザー一覧</h1>
 <div class="container">
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <tr>
       <th>ID</th>
       <th>名前</th>
       <th>自己紹介</th>
       <th>会員ステータス</th>
-      <th></th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |u |%>
-      <tr>
+      <tr class="moves-contents" onclick='window.location="/admin/users/<%= u.id %>"' role="link">
         <td><%= u.id %></td>
-        <td><%= u.name %></td>
+        <td><%= image_tag u.get_image(30,30) %><%= u.name %></td>
         <td><%= u.introduction %></td>
-        <td><%= u.is_deleted %></td>
-        <td><%= link_to "詳細",admin_user_path(u.id) %></td>
+        <td><%= u.is_deleted ? "退会" : "有効" %></td>
       </tr>
       <% end %>
     </tbody>

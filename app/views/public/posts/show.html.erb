@@ -9,21 +9,21 @@
     <%= @post.body %>
     <div class="form-inline">
       <% if @post.user == current_user %>
-    <%= link_to "編集する",edit_public_post_path(@post.id),class: "btn" %>
-    <%= link_to "削除する",public_post_path,method: :delete,class: "btn pr-2" %>
-  <% end %>
-  <!--いいね機能-->
-    <% if @post.favorited_by?(current_user) %>
-    <!--いいね済みならdestroyアクションを呼び出す-->
-      <%= link_to public_post_favorites_path(@post.id),method: :delete,class: "btn" do %>
-        <p style="color:red;">❤︎</p>
+        <%= link_to "編集する",edit_public_post_path(@post.id),class: "btn text-muted" %>
+        <%= link_to "削除する",public_post_path,method: :delete,class: "btn text-muted pr-2" %>
       <% end %>
-    <% else %>
-    <!--いいねしていない場合はcreateアクションを呼び出す-->
-      <%= link_to public_post_favorites_path(@post.id), method: :post,class: "btn" do %>
-        <p>♡︎</p>
+      <!--いいね機能-->
+      <% if @post.favorited_by?(current_user) %>
+      <!--いいね済みならdestroyアクションを呼び出す-->
+        <%= link_to public_post_favorites_path(@post.id),method: :delete,class: "btn" do %>
+          <p style="color:red;" class="text">❤︎</p>
+        <% end %>
+      <% else %>
+      <!--いいねしていない場合はcreateアクションを呼び出す-->
+        <%= link_to public_post_favorites_path(@post.id), method: :post,class: "btn" do %>
+          <p class="text">♡︎</p>
+        <% end %>
       <% end %>
-    <% end %>
     </div>
   </div>
 </div>

@@ -1,25 +1,20 @@
-<h3 class="text">フォロー一覧</h3>
-<div class="row">
+<h3 class="text offset-md-2">フォロー一覧</h3>
+<div class="row-fluid col-8">
   <% if users.exists? %>
-    <% users.each do |u| %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
+    <!--div class="table-responsive"-->
+      <table class="table table-hover table-condensed offset-md-3">
         <tbody>
-          <tr>
-            <td><%= u.name %></td>
-            <td>フォロー数：    <%= u.followings.count %></td>
-            <td>フォロワー数：  <%= u.followers.count %></td>
-          </tr>
+          <% users.each do |u| %>
+            <tr class="moves-contents" onclick='window.location="/public/users/<%= u.id %>"' role="link">
+              <td><%= image_tag u.get_image(30,30) %><%= u.name %></td>
+              <td>フォロー数：    <%= u.followings.count %></td>
+              <td>フォロワー数：  <%= u.followers.count %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
-    <% end %>
+    <!--/div-->
   <% else %>
-    <p class="text">あなたがフォローしているユーザーはいません。</p>
+    <p class="text-center">あなたがフォローしているユーザーはいません。</p>
   <% end %>
 </div>

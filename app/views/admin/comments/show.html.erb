@@ -1,12 +1,20 @@
-<h1>コメント情報</h1>
-<div class="container">
-  <table class="table">
+<h1 class="text-center">コメント情報</h1>
+<div class="row-fluid">
+  <table class="table col-8 offset-md-2">
     <tr><th>コメントID</th><td><%= @comment.id %></td></tr>
-    <tr><th>投稿ユーザー</th><td><%= @comment.user.name %></td></tr>
-    <tr><th>コメント本文</th><td><%= @comment.body %></td></tr>
-    <tr><th></th></tr>
+    <tr><th>コメントユーザー</th><td><%= link_to admin_users_path(@comment.user) do %>
+      <%= image_tag @comment.user.get_image(30,30) %><%= @comment.user.name %>
+    <% end %></td></tr>
+    <tr class="pb-0 mb-0"><th>コメント本文</th><td><%= @comment.body %></td></tr>
   </table>
+  <%= link_to "コメントを削除する",admin_comment_path(@comment),method: :delete,class: "offset-md-6 pt-0 mt-0" %>
 </div>
-<div class="container">
-  <%= link_to "削除する",admin_comment_path(@comment),method: :delete,class: "btn" %>
+<div class="row-fluid pt-5">
+  <table class="table table-hover col-8 offset-md-2">
+    <tr class="moves-contents" onclick='window.location="/admin/posts/<%= @comment.post.id %>"' role="link">
+      <th>コメント先の投稿</th><td><%= @comment.post.body %></td>
+    </tr>
+    <tr class="moves-contents" onclick='window.location="/admin/users/<%= @comment.post.user.id %>"' role="link">
+      <th>投稿ユーザー</th><td><%= image_tag @comment.post.user.get_image(30,30) %><%= @comment.post.user.name %></td>
+  </table>
 </div>
