@@ -1,50 +1,60 @@
-<h1 class="text">投稿本文</h1>
-<div class="row">
-  <%= link_to @post.user.name,public_user_path(@post.user),class: "#" %>
-  <%= @post.body %>
-</div>
-<div class="row">
-  <% if @post.user == current_user %>
-    <%= link_to "編集する",edit_public_post_path(@post.id),class: "#" %>
-    <%= link_to "削除する",public_post_path,method: :delete,class: "#" %>
+<div class="row offset-2 pt-5 pr-5 pl-5 ">
+  <div class="col-2">
+    <%= link_to public_user_path(@post.user) do %>
+      <%= image_tag @post.user.get_image(110,110) %>
+    <% end %>
+  </div>
+  <div class="col text-left">
+    <h6 class="pb-2 pt-3"><%= link_to @post.user.name,public_user_path(@post.user),class: "text-dark" %></h6>
+    <%= @post.body %>
+    <div class="form-inline">
+      <% if @post.user == current_user %>
+    <%= link_to "編集する",edit_public_post_path(@post.id),class: "btn" %>
+    <%= link_to "削除する",public_post_path,method: :delete,class: "btn pr-2" %>
   <% end %>
-</div>
-<div class="row">
   <!--いいね機能-->
-<% if @post.favorited_by?(current_user) %>
-  <!--いいね済みならdestroyアクションを呼び出す-->
-  <%= link_to public_post_favorites_path(@post.id),method: :delete do %>
-    <span style="color:red;">❤︎</span>
-  <% end %>
-<% else %>
-  <!--いいねしていない場合はcreateアクションを呼び出す-->
-  <%= link_to public_post_favorites_path(@post.id), method: :post do %>
-    <span>♡︎</span>
-  <% end %>
-<% end %>
-</div>
-<div class="row">
-  <h3 class="text">投稿する</h3>
-  <%= form_with model:[@post,@comment], url: public_post_comments_path(@post.id), local: true do|f| %>
-  <div class="form-group">
-    <%= f.text_area :body %>
+    <% if @post.favorited_by?(current_user) %>
+    <!--いいね済みならdestroyアクションを呼び出す-->
+      <%= link_to public_post_favorites_path(@post.id),method: :delete,class: "btn" do %>
+        <p style="color:red;">❤︎</p>
+      <% end %>
+    <% else %>
+    <!--いいねしていない場合はcreateアクションを呼び出す-->
+      <%= link_to public_post_favorites_path(@post.id), method: :post,class: "btn" do %>
+        <p>♡︎</p>
+      <% end %>
+    <% end %>
+    </div>
   </div>
-  <div class="action">
-    <%= f.submit "コメントする",class: "btn" %>
-  </div>
-  <% end %>
 </div>
-<div class="row">
-  <h3 class="text">コメント一覧</h3>
-  <div class="row">
-    <% @post.comment.each do|c| %>
-    <div class="form-group">
-      <%= c.user.name %>
-      <%= c.body %>
-      <% if current_user.id == c.user_id %>
-        <%= link_to "削除する",public_post_comment_path(@post, c),method: :delete,class: "btn" %>
+<div class="row align-items-center">
+  <div class="col offset-md-3">
+    <h3 class="text-center"><i class="far fa-comment"></i>コメント <%= @post.comment.count %>件</h3>
+  </div>
+</div>
+<% @post.comment.each do|c| %>
+  <div class="row col-6 justify-content-center d-flex offset-md-3 p-2 border-top">
+    <div class="col-2">
+      <%= link_to public_user_path(c.user) do %>
+        <%= image_tag c.user.get_image(40,40) %>
       <% end %>
     </div>
-  <% end %>
+    <div class="col text-left">
+      <h6 class="pb-2"><%= link_to c.user.name,public_user_path(c.user),class: "text-dark" %></h6>
+      <%= link_to c.body,public_post_path(c.post_id),class: "text-dark" %>
+      <% if current_user.id == c.user_id %>
+        <%= link_to "削除する",public_post_comment_path(@post, c),method: :delete,class: "btn small text-muted  pl-3" %>
+      <% end %>
+    </div>
   </div>
+<% end %>
+<div class="row col px-5 align-items-center offset-md-3">
+  <%= form_with model:[@post,@comment], url: public_post_comments_path(@post.id), local: true do|f| %>
+  <div class="form-group">
+    <%= f.text_area :body,size: "50x3" %>
+  </div>
+  <div class="action">
+    <%= f.submit "コメントする",class: "btn-primary" %>
+  </div>
+  <% end %>
 </div>

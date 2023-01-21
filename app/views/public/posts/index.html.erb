@@ -2,24 +2,34 @@
 <%= link_to new_public_post_path,class: "text-primary btn offset-md-10" do %>
 <h4><i class="far fa-square-plus"></i>投稿する</h4><% end %>
   <% @posts.each do |post| %>
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <div class="row">
-        <div class="col-2">
-          <%= link_to public_user_path(post.user) do %>
-            <%= image_tag post.user.get_image(90,90) %>
+  <div class="row col-9 justify-content-center d-flex offset-md-2 p-2 border-top">
+    <div class="col-2">
+      <%= link_to public_user_path(post.user) do %>
+        <%= image_tag post.user.get_image(90,90) %>
+      <% end %>
+    </div>
+    <div class="col text-left">
+      <h6 class="pb-2"><%= link_to post.user.name,public_user_path(post.user),class: "text-dark" %></h6>
+      <%= link_to public_post_path(post.id),class: "text-dark" do %>
+        <%= post.body %>
+        <div class="form-inline">
+          <p class="small text-muted text-right d-flex align-items-center pt-2">
+          <i class="far fa-comment"></i>
+          <% if post.comment.count != 0 %>
+            <%= post.comment.count %>
           <% end %>
-        </div>
-        <div class="col text-left">
-          <h6 class="pb-2"><%= link_to post.user.name,public_user_path(post.user),class: "text-dark" %></h6>
-          <%= link_to public_post_path(post.id),class: "text-dark" do %>
-            <%= post.body %>
-            <p class="small text-muted text-right d-flex align-items-center">
-              <i class="far fa-comment"></i>
-              <% if post.comment.count != 0 %>
-                <%= post.comment.count %>
+          </p>
+            <% if post.favorited_by?(current_user) %>
+            <!--いいね済みならdestroyアクションを呼び出す-->
+              <%= link_to public_post_favorites_path(post.id),method: :delete do %>
+                <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
               <% end %>
-            </p>
+            <% else %>
+            <!--いいねしていない場合はcreateアクションを呼び出す-->
+              <%= link_to public_post_favorites_path(post.id), method: :post do %>
+                <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
       </div>
