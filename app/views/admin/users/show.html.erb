@@ -12,6 +12,7 @@
     <div class="form-group justify-content-center">
       <%= f.label :"プロフィール画像",class:"col-4 offset-md-2" %>
       <%= f.file_field :image,class: "img_field",accept:"image/*" %>
+      <!--画像プレビュー用の項目　余裕ができれば-->
       <%#= image_tag @user, :image, fallback: 'default.png', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev' %>
     </div>
     <div class="form-group justify-content-center">

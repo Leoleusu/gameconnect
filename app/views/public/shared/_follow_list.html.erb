@@ -1,20 +1,33 @@
-<h3 class="text offset-md-2">フォロー一覧</h3>
-<div class="row-fluid col-8">
-  <% if users.exists? %>
-    <!--div class="table-responsive"-->
-      <table class="table table-hover table-condensed offset-md-3">
-        <tbody>
-          <% users.each do |u| %>
-            <tr class="moves-contents" onclick='window.location="/public/users/<%= u.id %>"' role="link">
-              <td><%= image_tag u.get_image(30,30) %><%= u.name %></td>
-              <td>フォロー数：    <%= u.followings.count %></td>
-              <td>フォロワー数：  <%= u.followers.count %></td>
-            </tr>
+<div class="modal fade modal-f" id="modal-follow" tabindex="-1">
+  <div class="modal-dialog modal-dialog-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="ModalLabel">フォロー一覧</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid">
+          <% if users.exists? %>
+            <div class="table-responsive">
+              <table class="table table-hover table-condensed">
+                <tbody>
+                  <% users.each do |u| %>
+                    <tr class="moves-contents" onclick='window.location="/public/users/<%= u.id %>"' role="link">
+                      <td><%= image_tag u.get_image(30,30) %><%= u.name %></td>
+                      <td>フォロー数：    <%= u.followings.count %></td>
+                      <td>フォロワー数：  <%= u.followers.count %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <p class="text-center">あなたがフォローしているユーザーはいません。</p>
           <% end %>
-        </tbody>
-      </table>
-    <!--/div-->
-  <% else %>
-    <p class="text-center">あなたがフォローしているユーザーはいません。</p>
-  <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

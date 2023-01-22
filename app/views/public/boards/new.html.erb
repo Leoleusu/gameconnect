@@ -1,0 +1,16 @@
+<h1 class="text-center pt-3">掲示板作成</h1>
+<div class="row justify-content-center">
+  <%= form_with model: @board,url: public_boards_path,method: :post,local: true do |f| %>
+  <div class="col-5 pt-2 form-group">
+    <%= f.label :"タイトル",class: "text-center" %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="col-5 pt-2 form-group">
+    <%= f.label :"本文",class: "text-center" %>
+    <%= f.text_area :body,size: "30x3" %>
+  </div>
+  <div class="col-5 action">
+    <%= f.submit "新規作成する",class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>

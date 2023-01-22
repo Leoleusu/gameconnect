@@ -1,5 +1,5 @@
 class Admin::SearchesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   def search
     @range = params[:range]
@@ -10,5 +10,11 @@ class Admin::SearchesController < ApplicationController
       @posts = Post.looks(params[:search],params[:word])
     end
   end
+
+  def index
+      @users = User.looks(params[:search],params[:word])
+      @posts = Post.looks(params[:search],params[:word])
+  end
+
 
 end

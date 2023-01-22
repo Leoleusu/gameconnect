@@ -4,6 +4,8 @@ class Comment < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  validates :body, presence: true, length: { maximum: 1_150 }
+
   #通知作成メソッド
   def create_notification_comment(current_user)
     #自分以外のコメントをした人全てを取得して通知を送る

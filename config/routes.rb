@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :posts,only: [:index,:show,:update,:destroy]
     resources :users,only: [:index,:show,:update]
     resources :comments,only: [:index,:show,:destroy]
+    resources :boards,only: [:index,:show,:destroy]
+    resources :board_comments,only: [:index,:show,:destroy]
     resources :searches,only: :index
     get"search" => "searches#search"
   end
@@ -28,6 +30,9 @@ Rails.application.routes.draw do
       member do
         get :favorites
       end
+    end
+    resources :boards, only: [:new,:index,:show,:create] do
+      resources :board_comments, only: [:create], shallow: true
     end
     resources :notifications, only: :index
     get "user/confirm" => 'users#confirm' #退会確認画面

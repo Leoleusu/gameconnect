@@ -1,75 +1,90 @@
-<div class="modal left fade" id="modal" tabindex="-1">
+<div class="modal left fade" id="modal-s" tabindex="-1">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel"><a href="/">title</a></h5>
+        <h3 class="modal-title text-light" id="ModalLabel"><a href="/">Game Connect</a></h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="text-light">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <ul class="navbar-nav flex-column ml-auto" style="heoght: 100vh">
+        <ul class="navbar-nav flex-column ml-auto" style="height: 100vh">
           <% if user_signed_in? %>
-            <li class="nav-item ">
+            <li class="nav-item m-2">
               <%= link_to destroy_user_session_path,method: :delete,class: "nav-link text-light" do %>
-                <i class="fas fa-right-from-bracket"></i> ログアウト
+                <h5><i class="fas fa-right-from-bracket"></i> ログアウト</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to public_posts_path,class: "nav-link text-light" do %>
-                <i class="fas fa-gamepad"></i> 投稿一覧
+                <h5><i class="fas fa-gamepad"></i> 投稿一覧</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to new_public_post_path,class: "nav-link text-light" do %>
-                <i class="fas fa-pen"></i> 投稿する
+                <h5><i class="fas fa-pen"></i> 投稿する</h5>
               <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to public_user_path(current_user),class: "nav-link text-light" do %>
-                <i class="fas fa-house"></i> マイページ
+            <li class="nav-item m-2">
+              <%= link_to public_boards_path,class: "nav-link text-light" do %>
+                <h5><i class="fas fa-chalkboard-user"></i> 掲示板</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <!--li class="nav-item m-2">
+              <%#= link_to public_user_path(current_user),class: "nav-link text-light" do %>
+                <h5><i class="fas fa-house"></i> マイページ</h5>
+              <%# end %>
+            </li-->
+            <li class="nav-item m-2">
               <%= link_to favorites_public_user_path(current_user),class: "nav-link text-light" do %>
-                <i class="fas fa-heart"></i> お気に入り
+                <h5><i class="fas fa-heart"></i> お気に入り</h5>
               <% end %>
             </li>
           <% elsif admin_signed_in? %>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to admin_users_path,class: "nav-link text-light" do %>
-                <i class="fas fa-users"></i> ユーザー一覧
+                <h5><i class="fas fa-users"></i> ユーザー一覧</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to admin_posts_path,class: "nav-link text-light" do %>
-                <i class="fas fa-list"></i> 投稿一覧
+                <h5><i class="fas fa-list"></i> 投稿一覧</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to admin_comments_path,class: "nav-link text-light" do %>
-                <i class="fas fa-comments"></i> コメント一覧
+                <h5><i class="fas fa-comments"></i> コメント一覧</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item m-2">
+              <%= link_to admin_boards_path,class: "nav-link text-light" do %>
+                <h5><i class="fas fa-chalkboard"></i> 掲示板一覧</h5>
+              <% end %>
+            </li>
+            <li class="nav-item m-2">
+              <%= link_to admin_board_comments_path,class: "nav-link text-light" do %>
+                <h5><i class="fas fa-chalkboard"></i> 掲示板コメント一覧</h5>
+              <% end %>
+            </li>
+            <li class="nav-item m-2">
               <%= link_to destroy_admin_session_path,method: :delete,class: "nav-link text-light" do %>
-                <i class="fas fa-right-from-bracket"></i> 管理者ログアウト
+                <h5><i class="fas fa-right-from-bracket"></i> 管理者ログアウト</h5>
               <% end %>
             </li>
           <% else %>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to new_user_session_path,class: "nav-link text-light" do %>
-                <i class="fas fa-right-to-bracket"></i> ログイン
+                <h5><i class="fas fa-right-to-bracket"></i> ログイン</h5>
               <% end %>
             </li>
-            <li class="nav-item">
-            <%= link_to users_guest_sign_in_path, method: :post,class: "nav-link text-light" do %>
-                <i class="fas fa-user"></i> ゲストログイン(閲覧用)
+            <li class="nav-item m-2">
+            <%= link_to users_guest_sign_in_path, method: :post,class: "nav-link text-light text-nowrap" do %>
+                <h5><i class="fas fa-user"></i> ゲストログイン(閲覧用)</h5>
               <% end %>
             </li>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <%= link_to new_admin_session_path,class: "nav-link text-light" do %>
-                <i class="fas fa-user-tie"></i> 管理者ログイン
+                <h5><i class="fas fa-user-tie"></i> 管理者ログイン</h5>
               <% end %>
             </li>
           <% end %>

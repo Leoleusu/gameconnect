@@ -1,0 +1,20 @@
+<h1 class="text-center">掲示板詳細</h1>
+<div class="row-fluid">
+  <table class="table col-8 offset-md-2">
+    <tr><th>掲示板ID</th><td><%= @board.id %></td></tr>
+    <tr><th>掲示板タイトル</th><td><%= @board.title %></td></tr>
+    <tr><th>本文</th><td><%= @board.body %></td></tr>
+    <tr><th>作成ユーザー</th><td><%= link_to admin_user_path(@board.user) do %>
+    <%= image_tag @board.user.get_image(30,30) %><%= @board.user.name %>
+    <% end %></td></tr>
+    <tr><th>コメント数</th><td><%= @board.board_comments.count %></td></tr>
+  </table>
+  <table class="table table-hover col-8 offset-md-2">
+    <% @board.board_comments.each do |bc| %>
+      <tr class="moves-contents" onclick='window.location="/admin/board_comments/<%= bc.id %>"' role="link">
+        <th><%= image_tag bc.user.get_image(30,30) %><%= bc.user.name %></th><td><%= bc.body %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "投稿を削除する",admin_board_path,method: :delete,class: "offset-md-6" %>
+</div>

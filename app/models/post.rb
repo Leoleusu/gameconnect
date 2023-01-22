@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :comment,dependent: :destroy
   has_many :notifications,dependent: :destroy
 
+  validates :body, presence: true, length: { maximum: 200 }
+
   #通知作成メソッド
   def create_notification_favorite(current_user, post_id, post_user_id)
     #すでにいいねされているかを検索して、連続でいいねを行っても一度しか表示が行かないようにする

@@ -1,10 +1,10 @@
-<div class="row offset-2 pt-5 pr-5 pl-5 ">
-  <div class="col-2">
+<div class="row offset-lg-2 pt-5 pr-5 pl-5 ">
+  <div class="col-md-2">
     <%= link_to public_user_path(@post.user) do %>
       <%= image_tag @post.user.get_image(110,110) %>
     <% end %>
   </div>
-  <div class="col text-left">
+  <div class="col-md-10 text-left">
     <h6 class="pb-2 pt-3"><%= link_to @post.user.name,public_user_path(@post.user),class: "text-dark" %></h6>
     <%= @post.body %>
     <div class="form-inline">
@@ -51,7 +51,7 @@
 <div class="row col px-5 align-items-center offset-md-3">
   <%= form_with model:[@post,@comment], url: public_post_comments_path(@post.id), local: true do|f| %>
   <div class="form-group">
-    <%= f.text_area :body,size: "50x3" %>
+    <%= f.text_area :body,placeholder: "コメント",class: "col-12",size: "auto" %>
   </div>
   <div class="action">
     <%= f.submit "コメントする",class: "btn-primary" %>

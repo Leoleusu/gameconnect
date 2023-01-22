@@ -21,19 +21,22 @@
     <header role="banner">
       <div class="container-fluid bg-dark">
         <div class="row-fluid">
-          <button type="button" class="btn" data-toggle="modal" data-target="#modal">
+          <div class="form-inline">
+            <button type="button" class="btn" data-toggle="modal" data-target="#modal-s" class="col-3">
             <i class="fas fa-bars fa-2x text-light p-2"></i>
           </button>
-          <%= render 'layouts/sidemenu' %>
-          
-          <div class="form-inline flex-row ml-auto">
+            <%= render 'layouts/sidemenu' %>
+            <div class="col-9 ml-auto form-inline">
             <% if user_signed_in? %>
               <%= render 'public/shared/search'%>
-              <%= link_to public_notifications_path,class: "nav-link text-secondary ml-auto mr-auto" do %>
+              <%= link_to public_notifications_path,class: "nav-link text-secondary ml-auto mr-2" do %>
               <i class="fas fa-bell fa-2x"></i><% end %>
-            <% elsif admin_signed_in? %>
+              <%= link_to public_user_path(current_user),class: "nav-link  mr-auto" do %>
+              <%= image_tag current_user.get_image(40,40) %><% end %>
+            <%# elsif admin_signed_in? %>
               <%#= render 'admin/shared/search' %>
             <% end %>
+            </div>
           </div>
         </div>
       </div>

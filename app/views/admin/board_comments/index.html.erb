@@ -1,0 +1,25 @@
+<h1 class="text-center">掲示板コメント一覧</h1>
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+      <th>ID</th>
+      <th>本文</th>
+      <th>作成ユーザー</th>
+      <th>投稿先掲示板タイトル</th>
+      <th>掲示板ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @board_comments.each do |bc|%>
+      <tr class="moves-contents" onclick='window.location="/admin/board_copmments/<%= bc.id %>"' role="link">
+        <td><%= bc.id %></td>
+        <td><%= bc.body %></td>
+        <td><%= image_tag bc.user.get_image(30,30) %><%= bc.user.name %></td>
+        <td><%= link_to bc.board.title,admin_board_path(bc.board) %></td>
+        <td><%= link_to bc.board_id,admin_board_path(bc.board),class: "text" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
