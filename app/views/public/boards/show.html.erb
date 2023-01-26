@@ -14,20 +14,20 @@
     <h6 class="pb-2 pt-3"><%= link_to @board.user.name,public_user_path(@board.user),class: "text-dark" %></h6>
     <%= @board.body %>
   </div>
+</div>
   <% @board_comments.each do |bc| %>
-    <div class="row-fluid justify-content-center d-flex offset-md-2 pt-2 border-top">
-      <div class="col-2 offset-2">
+    <div class="row justify-content-center d-flex offset-md-2 pt-2 border-top">
+      <div class="col-1 offset-2">
         <%= link_to public_user_path(bc.user) do %>
-          <%= image_tag bc.user.get_image(90,90) %>
+          <%= image_tag bc.user.get_image(50,50) %>
         <% end %>
       </div>
       <div class="col text-left">
-        <h6 class="pb-2"><%= link_to bc.user.name,public_user_path(bc.user),class: "text-dark" %></h6>
-        <%= bc.body %>
+        <h6 class="pb-1"><%= link_to bc.user.name,public_user_path(bc.user),class: "text-dark" %></h6>
+        <p class="align-items-start"><%= bc.body %></p>
       </div>
     </div>
   <% end %>
-</div>
 <div class="row justify-content-center pt-5 mt-5">
   <%= form_with model:[@board,@board_comment],url: public_board_board_comments_path(@board.id),method: :post,local: true do |f| %>
     <div class="form-group">

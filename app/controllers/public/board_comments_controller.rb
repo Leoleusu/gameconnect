@@ -2,8 +2,8 @@ class Public::BoardCommentsController < ApplicationController
 
   def create
     board_comment = current_user.board_comments.build(board_comment_params)
-    if board_comment.save(board_comment_params)
-      redirect_to public_board_path(board_id)
+    if board_comment.save
+      redirect_to public_board_path(params[:board_id])
       flash[:notice] = "掲示板にコメントしました。"
     else
       render :show
