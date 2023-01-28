@@ -2,7 +2,9 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  
+
+  before_action :customer_state, only: [:create]
+
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -30,4 +32,21 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  protected
+
+  def user_state
+    @user = User.find_by(email: params[:user][:email].downcase)
+    return if !@user
+    if @user
+      if @user.valid_password?(params[:user][:password]) && @user.is_deleted == true
+        flash[:error] = "このアカウントは現在使用できません。"
+        redirect_to new_user_registration_path
+      end
+    else
+      flash[:error] = "メールアドレスかパスワードが間違っています。"
+      redirect_to new_user_session_path
+    end
+  end
+
 end
