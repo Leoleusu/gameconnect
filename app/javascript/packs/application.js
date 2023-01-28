@@ -19,10 +19,10 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-jQuery.noConflict();
-(function($) {
+// jQuery.noConflict();
+// (function($) {
 
-$(document).ready(function() {
-  $('.drawer').drawer();
-});
-})(jQuery);
+// $(document).ready(function() {
+//   $('.drawer').drawer();
+// });
+// })(jQuery);
