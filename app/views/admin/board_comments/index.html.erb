@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <% @board_comments.each do |bc|%>
-      <tr class="moves-contents" onclick='window.location="/admin/board_copmments/<%= bc.id %>"' role="link">
+      <tr class="moves-contents" onclick='window.location="/admin/board_comments/<%= bc.id %>"' role="link">
         <td><%= bc.id %></td>
         <td><%= bc.body %></td>
         <td><%= image_tag bc.user.get_image(30,30) %><%= bc.user.name %></td>

@@ -20,21 +20,21 @@
 
   </head>
 
-  <body class="drawer drawer--left h-100 w-100">
+  <body class="h-100 w-100">
     <header role="banner">
       <div class="container-fluid bg-dark">
-        <div class="row-fluid">
+        <div class="row">
           <div class="form-inline">
-            <button type="button" class="btn" data-toggle="modal" data-target="#modal-s" class="col-3">
+            <button type="button" class="btn" data-toggle="modal" data-target="#modal-s" class="col-2">
             <i class="fas fa-bars fa-2x text-light p-2"></i>
           </button>
             <%= render 'layouts/sidemenu' %>
-            <div class="col-9 ml-auto form-inline">
+            <div class="col-10 form-inline">
             <% if user_signed_in? %>
               <%= render 'public/shared/search'%>
-              <%= link_to public_notifications_path,class: "nav-link text-secondary ml-auto mr-2" do %>
+              <%= link_to public_notifications_path,class: "nav-link text-secondary form-inline" do %>
               <i class="fas fa-bell fa-2x"></i><% end %>
-              <%= link_to public_user_path(current_user),class: "nav-link  mr-auto" do %>
+              <%= link_to public_user_path(current_user),class: "nav-link" do %>
               <%= image_tag current_user.get_image(40,40) %><% end %>
             <%# elsif admin_signed_in? %>
               <%#= render 'admin/shared/search' %>

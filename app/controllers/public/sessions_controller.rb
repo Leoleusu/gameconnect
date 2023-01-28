@@ -3,7 +3,7 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
-  before_action :customer_state, only: [:create]
+  before_action :user_state, only: [:create]
 
   def guest_sign_in
     user = User.guest
@@ -40,8 +40,8 @@ class Public::SessionsController < Devise::SessionsController
     return if !@user
     if @user
       if @user.valid_password?(params[:user][:password]) && @user.is_deleted == true
-        flash[:error] = "このアカウントは現在使用できません。"
-        redirect_to new_user_registration_path
+        flash[:alert] = "このアカウントは現在使用できません。"
+        redirect_to new_user_session_path
       end
     else
       flash[:error] = "メールアドレスかパスワードが間違っています。"
