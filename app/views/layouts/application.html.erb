@@ -30,7 +30,7 @@
             </button>
             <%= render 'layouts/modal_sidemenu' %>
           </div>
-          <div class="col-3 d-none d-lg-block">
+          <div class="col-3 d-none d-lg-block pt-2">
             <h3 class="modal-title"><%= link_to "Game Connect",root_path,class: "text-light p-3"%></h3>
           </div>
             <% if user_signed_in? %>
@@ -38,7 +38,7 @@
               <%= link_to public_notifications_path,class: "nav-link text-secondary ml-auto" do %>
               <i class="fas fa-bell fa-2x"></i><% end %>
               <%= link_to public_user_path(current_user),class: "nav-link" do %>
-              <%= image_tag current_user.get_image(40,40) %><% end %>
+              <%= image_tag current_user.get_image(40,40),class: "border border-secondary rounded-circle" %><% end %>
             <%# elsif admin_signed_in? %>
               <%#= render 'admin/shared/search' %>
             <% end %>
@@ -52,7 +52,7 @@
           <div class="col-3 m-0 p-0 d-none d-lg-block">
             <%= render 'layouts/pc_sidemenu' %>
           </div>
-          <div class="col-12 col-lg-9 m-0 p-0">
+          <div class="col-12 col-lg-9 m-0 p-0 bg-light">
             <div class="flash">
               <% if flash[:notice] %>
                 <p class="text-success text-center"><%= notice %></p>
