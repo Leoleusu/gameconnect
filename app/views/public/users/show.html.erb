@@ -1,8 +1,7 @@
 <h1 class="text-center">ユーザーページ</h1>
-<div class="row-fluid">
   <div class = "col-6 d-flex offset-md-3 p-2 border-top">
     <div class="col-md-3 flex-column">
-      <%= image_tag @user.get_image(150,150),class: "bd-placeholder-img" %>
+      <%= image_tag @user.get_image(150,150),class: "bd-placeholder-img img_responsive" %>
       <% if current_user == @user %>
         <%= link_to "編集する",edit_public_user_path(@user),class: "btn btn-success mt-3 mx-auto" %>
       <% else %>
@@ -20,7 +19,6 @@
       </div>
     </div>
   </div>
-</div>
 <div class="row-fluid">
   <div class="offset-md-6 col-6">
     <button type="button" class="btn text-dark " data-toggle="modal" data-target="#modal-follow">

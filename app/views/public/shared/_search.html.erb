@@ -1,4 +1,4 @@
-<div class="search-form p-2 m-2 ml-auto">
+<div class="search-form d-none d-md-block p-2 m-2 ml-auto ">
   <%= form_with url: public_search_path,local: true, method: :get do |f| %>
   <%= f.text_field :word %>
   <%= f.select :range, options_for_select([["User"],["Post"]]) %>

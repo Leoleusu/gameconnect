@@ -1,30 +1,24 @@
-<div class="container">
-  <h2>ログイン</h2>
-  <div class="row">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group">
-        <%= f.label :"メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :"パスワード" %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class="form-group">
-          <%= f.check_box :remember_me %>
-          <%= f.label :"内容を保存する" %>
-        </div>
-      <% end %>
-
-      <div class="actions">
-        <%= f.submit "ログイン" %>
-      </div>
-    <% end %>
-
-    <%= render "public/shared/links" %>
-
+<h2 class="text-center m-3">ログイン</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-inline">
+    <%= f.label :"メールアドレス",class: "col-sm-3 offset-sm-1" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-3 offset-md-1" %>
   </div>
-</div>
+
+  <div class="form-inline mt-3">
+    <%= f.label :"パスワード",class: "col-sm-3 offset-sm-1" %><br />
+    <%= f.password_field :password, autocomplete: "current-password",class: "col-md-3 offset-md-1" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="form-group offset-md-4">
+      <%= f.check_box :remember_me,class: "ml-4" %>
+      <%= f.label :"内容を保存する" %>
+    </div>
+  <% end %>
+
+  <div class="actions offset-md-4">
+    <%= f.submit "ログイン",class: "ml-4 mt-0 mb-3" %>
+  </div>
+<% end %>
+<%= render "public/shared/links" %>

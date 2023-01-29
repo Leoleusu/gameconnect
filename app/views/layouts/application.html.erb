@@ -24,37 +24,44 @@
     <header role="banner">
       <div class="container-fluid bg-dark">
         <div class="row">
-          <div class="form-inline">
-            <button type="button" class="btn" data-toggle="modal" data-target="#modal-s" class="col-2">
-            <i class="fas fa-bars fa-2x text-light p-2"></i>
-          </button>
-            <%= render 'layouts/sidemenu' %>
-            <div class="col-10 form-inline">
+          <div class="col-2 d-block d-lg-none">
+            <button type="button" class="btn" data-toggle="modal" data-target="#modal-s">
+              <i class="fas fa-bars fa-2x text-light p-2"></i>
+            </button>
+            <%= render 'layouts/modal_sidemenu' %>
+          </div>
+          <div class="col-3 d-none d-lg-block">
+            <h3 class="modal-title"><%= link_to "Game Connect",root_path,class: "text-light p-3"%></h3>
+          </div>
             <% if user_signed_in? %>
               <%= render 'public/shared/search'%>
-              <%= link_to public_notifications_path,class: "nav-link text-secondary form-inline" do %>
+              <%= link_to public_notifications_path,class: "nav-link text-secondary ml-auto" do %>
               <i class="fas fa-bell fa-2x"></i><% end %>
               <%= link_to public_user_path(current_user),class: "nav-link" do %>
               <%= image_tag current_user.get_image(40,40) %><% end %>
             <%# elsif admin_signed_in? %>
               <%#= render 'admin/shared/search' %>
             <% end %>
-            </div>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="container-fluid row p-0 m-0">
-        <main class="bg-light w-100">
-          <div class="flash">
-            <% if flash[:notice] %>
-              <p class="text-success text-center"><%= notice %></p>
-            <% elsif flash[:alert] %>
-              <p class="text-danger text-center"><%= alert %></p>
-            <% end %>
+    <div class="container-fluid">
+        <main class="bg-light row">
+          <div class="col-3 m-0 p-0 d-none d-lg-block">
+            <%= render 'layouts/pc_sidemenu' %>
           </div>
-          <%= yield %>
+          <div class="col-12 col-lg-9 m-0 p-0">
+            <div class="flash">
+              <% if flash[:notice] %>
+                <p class="text-success text-center"><%= notice %></p>
+              <% elsif flash[:alert] %>
+                <p class="text-danger text-center"><%= alert %></p>
+              <% end %>
+            </div>
+            <%= yield %>
+          </div>
         </main>
       </div>
   </body>
