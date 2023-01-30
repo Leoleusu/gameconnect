@@ -1,0 +1,35 @@
+    <% posts.each do |po| %>
+      <div class="d-flex justify-content-center pt-3 ml-2 border-top">
+        <div class="col-4 col-md-2 offset-md-1">
+          <%= link_to public_user_path(po.user) do %>
+            <%= image_tag po.user.get_image(90,90),class: "img-fluid border border-secandary rounded-circle" %>
+          <% end %>
+        </div>
+        <div class="col text-left">
+          <h6 class="pb-2"><%= link_to po.user.name,public_user_path(po.user),class: "text-dark" %></h6>
+          <%= link_to public_post_path(po.id),class: "text-dark" do %>
+            <%= po.body %>
+            <div class="form-inline">
+              <p class="small text-muted text-right d-flex align-items-center pt-2">
+              <i class="far fa-comment"></i>
+              <% if po.comment.count != 0 %>
+                <%= po.comment.count %>
+              <% end %>
+              </p>
+              <% if po.favorited_by?(current_user) %>
+              <!--いいね済みならdestroyアクションを呼び出す-->
+                <%= link_to public_post_favorites_path(po.id),method: :delete do %>
+                  <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
+                <% end %>
+              <% else %>
+              <!--いいねしていない場合はcreateアクションを呼び出す-->
+                <%= link_to public_post_favorites_path(po.id), method: :post do %>
+                  <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
+                <% end %>
+              <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    <%= paginate @posts %>

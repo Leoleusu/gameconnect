@@ -5,11 +5,11 @@
 //   height: 80%;
 // }
 
-.img_prev:hover {
-  cursor: pointer;
-  opacity: 0.7;
-  transform: scale(1.01, 1.01);
-}
+// .img_prev:hover {
+//   cursor: pointer;
+//   opacity: 0.7;
+//   transform: scale(1.01, 1.01);
+// }
 
 #modal-f .modal-content {
   background-color: transparent;
@@ -55,6 +55,14 @@
   overflow-y: scroll;
   background-color: #343a40;
 }
+
+.sidemenu-fixed {
+  position: sticky;
+}
+
+// .body-box {
+//   padding-top: 70px;
+// }
 
 // body {
 //   background-image: image-url("hoge.jpg");

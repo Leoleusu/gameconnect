@@ -1,12 +1,10 @@
-<h1 class="text-center">投稿編集画面</h1>
-<div class="row justify-content-center">
-  <%= form_with model: @post, url: public_post_path, local: true do |f| %>
-    <div class="form-group col-5 pt-2">
-      <%= f.label :"本文" %>
-      <%= f.text_area :body %>
-    </div>
-    <div class="action col-5">
-      <%= f.submit "編集する",class: "btn btn-primary" %>
-    </div>
-    <% end %>
-</div>
+<h1 class="text-center pt-3">投稿編集画面</h1>
+<%= form_with model: @post, url: public_post_path, local: true do |f| %>
+  <div class="form-group text-center">
+    <%= f.label :"本文",class: "col-12" %>
+    <%= f.text_area :body,class: "col-10 offset-1 col-md-6 col-lg-5" %>
+  </div>
+  <div class="action">
+    <%= f.submit "編集する",class: "btn btn-primary col-6 offset-3 col-md-2 offset-md-5" %>
+  </div>
+<% end %>

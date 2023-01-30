@@ -5,13 +5,13 @@ class Public::BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.all.includes(:user).order(created_at: :desc)
+    @boards = Board.all.includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def show
     @board = Board.find(params[:id])
     @board_comment = BoardComment.new
-    @board_comments = @board.board_comments.includes(:user)
+    @board_comments = @board.board_comments.includes(:user).page(params[:page])
   end
 
   def create

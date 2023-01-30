@@ -5,12 +5,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc).page(params[:page])
   end
 
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @comments = @post.comments.order(created_at: :desc).page(params[:page])
   end
 
   def edit

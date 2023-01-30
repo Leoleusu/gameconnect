@@ -1,5 +1,5 @@
 <div class="text-center pt-3 mt-3">
-  <%= image_tag @user.get_image(150,150),class: "bd-placeholder-img img-fluid d-block mx-auto border border-dark rounded-circle" %>
+  <%= image_tag @user.get_image(150,150),class: "bd-placeholder-img img-fluid d-block mx-auto border border-secandary rounded-circle" %>
   <h2 class="pb-1 mx-auto"><%= @user.name %></h2>
   <p><%= @user.introduction %></p>
 </div>
@@ -26,38 +26,7 @@
   </div>
   <h3 class="text-center pt-4">投稿一覧</h3>
   <% if @posts.exists? %>
-    <% @posts.each do |po| %>
-      <div class="d-flex justify-content-center pt-3 ml-2 border-top">
-        <div class="col-4 col-md-2 offset-md-1">
-          <%= image_tag po.user.get_image(90,90),class: "img-fluid  border border-dark rounded-circle" %>
-        </div>
-        <div class="col text-left">
-          <h6 class="pb-2 text-dark"><%= po.user.name %></h6>
-          <%= link_to public_post_path(po.id),class: "text-dark" do %>
-            <%= po.body %>
-            <div class="form-inline">
-              <p class="small text-muted text-right d-flex align-items-center pt-2">
-              <i class="far fa-comment"></i>
-              <% if po.comment.count != 0 %>
-                <%= po.comment.count %>
-              <% end %>
-              </p>
-              <% if po.favorited_by?(current_user) %>
-              <!--いいね済みならdestroyアクションを呼び出す-->
-                <%= link_to public_post_favorites_path(po.id),method: :delete do %>
-                  <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
-                <% end %>
-              <% else %>
-              <!--いいねしていない場合はcreateアクションを呼び出す-->
-                <%= link_to public_post_favorites_path(po.id), method: :post do %>
-                  <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
-                <% end %>
-              <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
+    <%= render "public/shared/post_list",posts: @posts %>
   <% else %>
     <div class="col-12 p-5">
       <p class="text-muted text-center">まだ何も投稿していないよ！</p>

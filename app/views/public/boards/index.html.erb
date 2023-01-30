@@ -1,32 +1,32 @@
 <h1 class="text-center pt-3">掲示板一覧</h1>
-   <div class="row-fluid pt-3">
-     <div class="col-lg-10 offset-lg-1">
-       <%= link_to new_public_board_path,class: "text-primary btn offset-md-4" do %>
-        <i class="fas fa-chalkboard"></i>新規作成</h4><% end %>
-       <!-- 検索フォーム -->
-       <form>
-         <div class="input-group mb-3">
-           <input class="form-control" placeholder="検索ワード" type="search" size="40x2"/>
-           <div class="input-group-append">
-             <input type="submit" value="検索" class="btn btn-primary" />
-           </div>
-         </div>
-       </form>
-     </div>
-   </div>
+    <div class="col-lg-10 offset-lg-1">
+      <%= link_to new_public_board_path,class: "text-primary btn offset-md-4" do %>
+        <i class="fas fa-chalkboard"></i>新規作成</h4>
+      <% end %>
+      <!-- 検索フォーム -->
+      <!--<form>-->
+      <!--  <div class="input-group mb-3">-->
+      <!--    <input class="form-control" placeholder="検索ワード" type="search" size="40x2"/>-->
+      <!--    <div class="input-group-append">-->
+      <!--      <input type="submit" value="検索" class="btn btn-primary" />-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--</form>-->
+    </div>
 
 <% if @boards.exists? %>
   <% @boards.each do |b| %>
-    <div class="row-fluid justify-content-center d-flex offset-md-2 p-2 border-top">
+    <div class="justify-content-center d-flex pt-3 ml-2 border-top">
       <div class="col text-left">
         <%= link_to public_board_path(b.id),class: "text-dark" do %>
-          <h3><%= b.title %></h3>
-          <%= b.body %>
-          <div class="form-inline">
-            <p class="small text-muted text-right d-flex align-items-center pt-2">
+        <div class="form-inline">
+          <h6 class="col-10 text-center"><%= b.title %></h6>
+            <p class="small text-muted text-right d-flex align-items-center pl-2">
             <i class="far fa-comment"></i>
             <% if b.board_comments.count != 0 %>
-              <%= b.board_comments.count %>
+              <%= b.board_comments.count + 1 %>
+            <% else %>
+              1
             <% end %>
             </p>
           </div>
@@ -34,6 +34,7 @@
       </div>
     </div>
   <% end %>
+  <%= paginate @boards %>
 <% else %>
   <div class="col-12 p-5">
     <p class="text-muted text-center">掲示板がありません。掲示板を作ってみよう！</p>

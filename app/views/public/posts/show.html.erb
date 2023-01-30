@@ -1,60 +1,55 @@
-<div class="row offset-lg-2 pt-5 pr-5 pl-5 ">
-  <div class="col-md-2">
+<div class="d-flex justify-content-center pt-3 border-top">
+  <div class="col-4 col-md-2 offset-md-1 pt-3">
     <%= link_to public_user_path(@post.user) do %>
-      <%= image_tag @post.user.get_image(110,110) %>
+      <%= image_tag @post.user.get_image(110,110),class: "img-fluid border border-secandary rounded-circle" %>
     <% end %>
   </div>
-  <div class="col-md-10 text-left">
-    <h6 class="pb-2 pt-3"><%= link_to @post.user.name,public_user_path(@post.user),class: "text-dark" %></h6>
-    <%= @post.body %>
-    <div class="form-inline">
-      <% if @post.user == current_user %>
-        <%= link_to "編集する",edit_public_post_path(@post.id),class: "btn text-muted" %>
-        <%= link_to "削除する",public_post_path,method: :delete,class: "btn text-muted pr-2" %>
-      <% end %>
-      <!--いいね機能-->
-      <% if @post.favorited_by?(current_user) %>
-      <!--いいね済みならdestroyアクションを呼び出す-->
-        <%= link_to public_post_favorites_path(@post.id),method: :delete,class: "btn" do %>
-          <p style="color:red;" class="text">❤︎</p>
+  <div class="col pt-3 text-left">
+    <h6 class="pb-2"><%= link_to @post.user.name,public_user_path(@post.user),class: "text-dark" %></h6>
+    <%= link_to public_post_path(@post),class: "text-dark" do %>
+      <%= @post.body %>
+      <div class="form-inline">
+        <% if @post.favorited_by?(current_user) %>
+        <!--いいね済みならdestroyアクションを呼び出す-->
+          <%= link_to public_post_favorites_path(@post.id),method: :delete do %>
+            <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
+          <% end %>
+        <% else %>
+        <!--いいねしていない場合はcreateアクションを呼び出す-->
+          <%= link_to public_post_favorites_path(@post.id), method: :post do %>
+            <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
+          <% end %>
         <% end %>
-      <% else %>
-      <!--いいねしていない場合はcreateアクションを呼び出す-->
-        <%= link_to public_post_favorites_path(@post.id), method: :post,class: "btn" do %>
-          <p class="text">♡︎</p>
-        <% end %>
-      <% end %>
     </div>
-  </div>
+  <% end %>
 </div>
-<div class="row align-items-center">
-  <div class="col offset-md-3">
-    <h3 class="text-center"><i class="far fa-comment"></i>コメント <%= @post.comment.count %>件</h3>
-  </div>
 </div>
+  <div class="col-12 col-md-9 pt-3 text-center">
+    <h5 class="#"><i class="far fa-comment"></i>コメント <%= @post.comment.count %>件</h5>
+  </div>
 <% @post.comment.each do|c| %>
-  <div class="row col-6 justify-content-center d-flex offset-md-3 p-2 border-top">
-    <div class="col-2">
+  <div class="d-flex justify-content-center pt-3 pb-3 border-top">
+    <div class="col-4 col-md-2 offset-md-1">
       <%= link_to public_user_path(c.user) do %>
-        <%= image_tag c.user.get_image(40,40) %>
+        <%= image_tag c.user.get_image(50,50),class: "img-fluid border border-secandary rounded-circle" %>
       <% end %>
     </div>
     <div class="col text-left">
       <h6 class="pb-2"><%= link_to c.user.name,public_user_path(c.user),class: "text-dark" %></h6>
       <%= link_to c.body,public_post_path(c.post_id),class: "text-dark" %>
       <% if current_user.id == c.user_id %>
-        <%= link_to "削除する",public_post_comment_path(@post, c),method: :delete,class: "btn small text-muted  pl-3" %>
+        <%= link_to "削除する",public_post_comment_path(@post, c),method: :delete,class: "btn small text-muted pl-3" %>
       <% end %>
     </div>
   </div>
 <% end %>
-<div class="row col px-5 align-items-center offset-md-3">
+<div class="pt-5 col-10 offset-1 col-md-6 offset-md-3">
   <%= form_with model:[@post,@comment], url: public_post_comments_path(@post.id), local: true do|f| %>
   <div class="form-group">
     <%= f.text_area :body,placeholder: "コメント",class: "col-12",size: "auto" %>
   </div>
   <div class="action">
-    <%= f.submit "コメントする",class: "btn-primary" %>
+    <%= f.submit "コメントする",class: "btn-primary col-8 offset-2 col-md-4 offset-md-4" %>
   </div>
   <% end %>
 </div>
