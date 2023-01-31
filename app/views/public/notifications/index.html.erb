@@ -1,12 +1,11 @@
-<h2 class="text">通知一覧</h2>
-<div class="row">
-  <% notifications = @notifications.where.not(sender_id: current_user.id) %>
+<h2 class="text-center m-3">通知一覧</h2>
+<% notifications = @notifications.where.not(sender_id: current_user.id) %>
   <% if notifications.exists? %>
     <% notifications.each do |notification| %>
       <%= render "notification", notification: notification %>
     <% end %>
     <%= paginate notifications %>
   <% else %>
-    <p class="text">通知はありません。</p>
+    <p class="text-center">通知はありません。</p>
   <% end %>
 </div>
