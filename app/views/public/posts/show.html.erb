@@ -20,7 +20,7 @@
             <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
           <% end %>
           <% if current_user == @post.user %>
-            <%= link_to "削除する",public_post_path,method: :delete,class: "#" %>
+            <%= link_to "削除する",public_post_path,method: :delete,class: "text-muted offset-6" %>
           <% end %>
         <% end %>
     </div>
