@@ -2,11 +2,11 @@
 <%= form_with model: @board,url: public_boards_path,method: :post,local: true do |f| %>
   <div class="text-center form-group">
     <%= f.label :"タイトル",class: "col-12" %>
-    <%= f.text_field :title,class: "col-10 col-md-6" %>
+    <%= f.text_field :title, placeholder: "最大20文字まで", class: "col-10 col-md-6" %>
   </div>
   <div class="text-center form-group">
     <%= f.label :"本文",class: "col-12" %>
-    <%= f.text_area :body,class: "col-10 col-md-6" %>
+    <%= f.text_area :body, placeholder: "最大500文字まで",class: "col-10 col-md-6" %>
   </div>
   <div class="action">
     <%= f.submit "新規作成する",class: "btn btn-primary col-6 offset-3 col-md-2 offset-md-5" %>
