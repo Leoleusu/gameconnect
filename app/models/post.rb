@@ -1,15 +1,15 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :favorites,dependent: :destroy
-  has_many :comment,dependent: :destroy
-  has_many :notifications,dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :comment, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :body, presence: true, length: { maximum: 200 }
 
   #通知作成メソッド
   def create_notification_favorite(current_user, post_id, post_user_id)
     #すでにいいねされているかを検索して、連続でいいねを行っても一度しか表示が行かないようにする
-    temp = Notification.where(["sender_id = ? and receiver_id = ? and post_id = ? and action = ? ",current_user.id, user.id, id, "favorite"])
+    temp = Notification.where(["sender_id = ? and receiver_id = ? and post_id = ? and action = ? ", current_user.id, user.id, id, "favorite"])
     #いいねされていない場合にのみ、通知を作る
     if temp.blank?
       notification = current_user.active_notifications.new(
@@ -44,5 +44,4 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
-
 end

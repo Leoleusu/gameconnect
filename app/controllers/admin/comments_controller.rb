@@ -1,5 +1,4 @@
 class Admin::CommentsController < ApplicationController
-
   def index
     @comments = Comment.all
   end
@@ -20,9 +19,7 @@ class Admin::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:body)
-  end
-
+    def comment_params
+      params.require(:comment).permit(:body)
+    end
 end

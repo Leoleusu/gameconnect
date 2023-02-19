@@ -1,5 +1,4 @@
 class Admin::PostsController < ApplicationController
-
   def index
     @posts = Post.all
   end
@@ -31,8 +30,7 @@ class Admin::PostsController < ApplicationController
   end
 
   private
-
-  def post_params
-    params.require(:post).permit(:body,:user_id)
-  end
+    def post_params
+      params.require(:post).permit(:body, :user_id)
+    end
 end

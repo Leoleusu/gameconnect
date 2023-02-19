@@ -6,11 +6,11 @@ class User < ApplicationRecord
 
          has_one_attached :image
 
-         has_many :posts,dependent: :destroy
-         has_many :favorites,dependent: :destroy
-         has_many :comments,dependent: :destroy
-         has_many :boards,dependent: :destroy
-         has_many :board_comments,dependent: :destroy
+         has_many :posts, dependent: :destroy
+         has_many :favorites, dependent: :destroy
+         has_many :comments, dependent: :destroy
+         has_many :boards, dependent: :destroy
+         has_many :board_comments, dependent: :destroy
 
          #フォローした・されたの関係
          has_many :relationships, class_name: "Relationship", foreign_key: "follow_id", dependent: :destroy
@@ -25,17 +25,17 @@ class User < ApplicationRecord
          has_many :passive_notifications, class_name: "Notification", foreign_key: "receiver_id", dependent: :destroy
 
   #ユーザーのプロフィール画像
-  def get_image(width,height)
+  def get_image(width, height)
     unless image.attached?
-      file_path = Rails.root.join('app/assets/images/default.png')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/*')
+      file_path = Rails.root.join("app/assets/images/default.png")
+      image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/*")
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
 
   #ゲストユーザーを作る
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
@@ -84,5 +84,4 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
-
 end

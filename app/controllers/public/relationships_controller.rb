@@ -1,5 +1,4 @@
 class Public::RelationshipsController < ApplicationController
-
   #フォローする時
   def create
     @user = User.find(params[:user_id])
@@ -24,5 +23,4 @@ class Public::RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     @users = user.followers
   end
-
 end

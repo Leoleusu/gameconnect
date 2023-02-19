@@ -1,5 +1,4 @@
 class Admin::UsersController < ApplicationController
-
   def index
     @users = User.all
   end
@@ -27,9 +26,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name,:introduction,:is_deleted,:image)
-  end
-
+    def user_params
+      params.require(:user).permit(:name, :introduction, :is_deleted, :image)
+    end
 end

@@ -30,5 +30,4 @@ class Comment < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
 end

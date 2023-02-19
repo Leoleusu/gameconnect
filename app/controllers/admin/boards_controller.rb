@@ -1,5 +1,4 @@
 class Admin::BoardsController < ApplicationController
-
   def index
     @boards = Board.all
   end
@@ -20,8 +19,7 @@ class Admin::BoardsController < ApplicationController
   end
 
   private
-
-  def board_params
-    params.require(:board).permit(:title,:body)
-  end
+    def board_params
+      params.require(:board).permit(:title, :body)
+    end
 end

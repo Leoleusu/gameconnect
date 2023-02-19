@@ -12,7 +12,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to public_posts_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to public_posts_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   # GET /resource/sign_in
@@ -38,7 +38,6 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   protected
-
   def user_state
     @user = User.find_by(email: params[:user][:email].downcase)
     return if !@user
@@ -52,5 +51,4 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to new_user_session_path
     end
   end
-
 end

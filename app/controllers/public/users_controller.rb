@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :set_user,only: [:favorites]
+  before_action :set_user, only: [:favorites]
 
   def show
     @user = User.find(params[:id])
@@ -40,13 +40,11 @@ class Public::UsersController < ApplicationController
   end
 
   private
+    def user_params
+      params.require(:user).permit(:name, :introduction, :is_deleted, :image)
+    end
 
-  def user_params
-    params.require(:user).permit(:name,:introduction,:is_deleted,:image)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
+    def set_user
+      @user = User.find(params[:id])
+    end
 end

@@ -1,5 +1,4 @@
 class Public::BoardsController < ApplicationController
-
   def new
     @board = Board.new
   end
@@ -26,9 +25,7 @@ class Public::BoardsController < ApplicationController
   end
 
   private
-
-  def board_params
-    params.require(:board).permit(:title,:body)
-  end
-
+    def board_params
+      params.require(:board).permit(:title, :body)
+    end
 end
