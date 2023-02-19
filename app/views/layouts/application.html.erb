@@ -35,9 +35,11 @@
           </div>
             <% if user_signed_in? %>
               <%= render 'public/shared/search'%>
-              <%= link_to public_notifications_path,class: "nav-link text-secondary ml-auto" do %>
-              <i class="fas fa-bell fa-2x"></i><% end %>
-              <%= link_to public_user_path(current_user),class: "nav-link" do %>
+              <% if current_user.email != "guest@example.com" %>
+                <%= link_to notifications_path,class: "nav-link text-secondary ml-auto" do %>
+                <i class="fas fa-bell fa-2x"></i><% end %>
+              <% end %>
+              <%= link_to user_path(current_user),class: "nav-link" do %>
               <%= image_tag current_user.get_image(40,40),class: "border border-secondary bg-light rounded-circle" %><% end %>
             <%# elsif admin_signed_in? %>
               <%#= render 'admin/shared/search' %>

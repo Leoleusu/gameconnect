@@ -1,6 +1,8 @@
 <h1 class ="text-center m-3">投稿一覧</h1>
-<%= link_to new_public_post_path,class: "text-primary btn offset-6 offset-md-10" do %>
+<% if current_user.email != "guest@example.com" %>
+  <%= link_to new_post_path,class: "text-primary btn offset-6 offset-md-10" do %>
   <i class="far fa-square-plus"></i>投稿する</h4><% end %>
+<% end %>
 <% if @posts.exists? %>
   <%= render "public/shared/post_list",posts: @posts %>
 <% else %>

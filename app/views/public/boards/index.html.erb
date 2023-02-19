@@ -1,7 +1,9 @@
 <h1 class="text-center pt-3">掲示板一覧</h1>
     <div class="col-lg-10 offset-lg-1">
-      <%= link_to new_public_board_path,class: "text-primary btn offset-md-4" do %>
-        <i class="fas fa-chalkboard"></i>新規作成</h4>
+      <% if current_user.email != "guest@example.com" %>
+        <%= link_to new_board_path,class: "text-primary btn offset-md-4" do %>
+          <i class="fas fa-chalkboard"></i>新規作成</h4>
+        <% end %>
       <% end %>
       <!-- 検索フォーム -->
       <!--<form>-->
@@ -18,7 +20,7 @@
   <% @boards.each do |b| %>
     <div class="justify-content-center d-flex pt-3 ml-2 border-top">
       <div class="col text-left">
-        <%= link_to public_board_path(b.id),class: "text-dark" do %>
+        <%= link_to board_path(b.id),class: "text-dark" do %>
         <div class="form-inline">
           <h6 class="col-10 text-center"><%= b.title %></h6>
             <p class="small text-muted text-right d-flex align-items-center pl-2">
