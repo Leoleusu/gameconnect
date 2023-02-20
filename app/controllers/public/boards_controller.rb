@@ -17,9 +17,9 @@ class Public::BoardsController < ApplicationController
     @board = current_user.boards.build(board_params)
     if @board.save
       flash[:notice] = "新しい掲示板を作成しました。"
-      redirect_to public_board_path(@board)
+      redirect_to board_path(@board)
     else
-      flash[:notice] = "掲示板の作成に失敗しました。"
+      flash[:alert] = "掲示板の作成に失敗しました。"
       render :new
     end
   end

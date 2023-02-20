@@ -4,13 +4,13 @@
   <% @favorite_posts.each do|fp| %>
     <div class="row col-9 justify-content-center d-flex offset-md-2 p-2 border-top">
       <div class="col-2">
-        <%= link_to public_user_path(fp.user) do %>
+        <%= link_to user_path(fp.user) do %>
           <%= image_tag fp.user.get_image(90,90) %>
         <% end %>
       </div>
     <div class="col text-left">
-      <h6 class="pb-2"><%= link_to fp.user.name,public_user_path(fp.user),class: "text-dark" %></h6>
-      <%= link_to public_post_path(fp.id),class: "text-dark" do %>
+      <h6 class="pb-2"><%= link_to fp.user.name,user_path(fp.user),class: "text-dark" %></h6>
+      <%= link_to post_path(fp.id),class: "text-dark" do %>
         <%= fp.body %>
         <div class="form-inline">
           <p class="small text-muted text-right d-flex align-items-center pt-2">
@@ -21,12 +21,12 @@
           </p>
           <% if fp.favorited_by?(current_user) %>
           <!--いいね済みならdestroyアクションを呼び出す-->
-            <%= link_to public_post_favorites_path(fp.id),method: :delete do %>
+            <%= link_to post_favorites_path(fp.id),method: :delete do %>
               <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
             <% end %>
           <% else %>
           <!--いいねしていない場合はcreateアクションを呼び出す-->
-            <%= link_to public_post_favorites_path(fp.id), method: :post do %>
+            <%= link_to post_favorites_path(fp.id), method: :post do %>
               <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
             <% end %>
           <% end %>

@@ -5,7 +5,7 @@ class Public::FavoritesController < ApplicationController
     favorite.save
     post.create_notification_favorite(current_user, post.id, post.user_id)
     flash[:notice] = "いいね！"
-    redirect_to public_post_path(post.id)
+    redirect_to post_path(post.id)
   end
 
   def destroy
@@ -13,6 +13,6 @@ class Public::FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(post_id: post.id)
     favorite.destroy
     flash[:notice] = "やっぱりよくなかったね…"
-    redirect_to public_post_path(post.id)
+    redirect_to post_path(post.id)
   end
 end

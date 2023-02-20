@@ -14,7 +14,7 @@
               <table class="table table-hover table-condensed">
                 <tbody>
                   <% users.each do |u| %>
-                    <tr class="moves-contents" onclick='window.location="/public/users/<%= u.id %>"' role="link">
+                    <tr class="moves-contents" onclick='window.location="/users/<%= u.id %>"' role="link">
                       <td><%= image_tag u.get_image(30,30) %><%= u.name %></td>
                       <td>フォロー数：    <%= u.followings.count %></td>
                       <td>フォロワー数：  <%= u.followers.count %></td>

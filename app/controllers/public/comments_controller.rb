@@ -7,7 +7,7 @@ class Public::CommentsController < ApplicationController
     #byebug
     comment.create_notification_comment(current_user)
     flash[:notice] = "コメントしました"
-    redirect_to public_post_path(post.id)
+    redirect_to post_path(post.id)
   end
 
   def edit
@@ -17,7 +17,7 @@ class Public::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(coment_params)
-      redirect_to admin_comment_path(@comment)
+      redirect_to comment_path(@comment)
       flash[:notice] = "編集しました。"
     else
       render :show
@@ -29,7 +29,7 @@ class Public::CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = Comment.find(params[:id])
     if comment.destroy
-      redirect_to public_post_path(post)
+      redirect_to post_path(post)
       flash[:notice] = "コメントを削除しました。"
     else
       render :show

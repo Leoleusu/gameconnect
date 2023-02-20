@@ -1,31 +1,38 @@
+<div class="d-flex justify-content-center pt-3">
+  <div class="pt-1 col-12">
+    <%= link_to "一覧に戻る",posts_path,class: "text-primary text-lowercase ml-auto mr-1" %>
+  </div>
+</div>
 <div class="d-flex justify-content-center pt-3 border-top">
   <div class="col-4 col-md-2 offset-md-1 pt-3">
-    <%= link_to public_user_path(@post.user) do %>
+    <%= link_to user_path(@post.user) do %>
       <%= image_tag @post.user.get_image(110,110),class: "img-fluid border border-secandary rounded-circle" %>
     <% end %>
   </div>
   <div class="col pt-3 text-left">
-    <h6 class="pb-2"><%= link_to @post.user.name,public_user_path(@post.user),class: "text-dark" %></h6>
-    <%= link_to public_post_path(@post),class: "text-dark" do %>
+    <h6 class="pb-2"><%= link_to @post.user.name,user_path(@post.user),class: "text-dark" %></h6>
+    <%= link_to post_path(@post),class: "text-dark" do %>
       <%= @post.body %>
       <div class="form-inline">
-        <% if @post.favorited_by?(current_user) %>
-        <!--いいね済みならdestroyアクションを呼び出す-->
-          <%= link_to public_post_favorites_path(@post.id),method: :delete do %>
-            <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
-          <% end %>
-        <% else %>
-        <!--いいねしていない場合はcreateアクションを呼び出す-->
-          <%= link_to public_post_favorites_path(@post.id), method: :post do %>
-            <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
-          <% end %>
-          <% if current_user == @post.user %>
-            <%= link_to "削除する",public_post_path,method: :delete,class: "text-muted offset-6" %>
+        <% if current_user.email != "guest@example.com" %>
+          <% if @post.favorited_by?(current_user) %>
+          <!--いいね済みならdestroyアクションを呼び出す-->
+            <%= link_to post_favorites_path(@post.id),method: :delete do %>
+              <p style="color:red;" class="small text-muted text-right pl-3 d-flex align-items-center pt-2">❤</p>
+            <% end %>
+          <% else %>
+          <!--いいねしていない場合はcreateアクションを呼び出す-->
+            <%= link_to post_favorites_path(@post.id), method: :post do %>
+              <p class="small text-muted text-right pl-3 d-flex align-items-center pt-2">♡︎</p>
+            <% end %>
+            <% if current_user == @post.user %>
+              <%= link_to "削除する",post_path,method: :delete,class: "text-muted offset-6" %>
+            <% end %>
           <% end %>
         <% end %>
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
 </div>
   <div class="col-12 col-md-9 pt-3 text-center">
     <h5 class="#"><i class="far fa-comment"></i>コメント <%= @post.comment.count %>件</h5>
@@ -33,26 +40,28 @@
 <% @post.comment.each do|c| %>
   <div class="d-flex justify-content-center pt-3 pb-3 border-top">
     <div class="col-4 col-md-2 offset-md-1">
-      <%= link_to public_user_path(c.user) do %>
+      <%= link_to user_path(c.user) do %>
         <%= image_tag c.user.get_image(50,50),class: "img-fluid border border-secandary rounded-circle" %>
       <% end %>
     </div>
     <div class="col text-left">
-      <h6 class="pb-2"><%= link_to c.user.name,public_user_path(c.user),class: "text-dark" %></h6>
-      <%= link_to c.body,public_post_path(c.post_id),class: "text-dark" %>
+      <h6 class="pb-2"><%= link_to c.user.name,user_path(c.user),class: "text-dark" %></h6>
+      <%= link_to c.body,post_path(c.post_id),class: "text-dark" %>
       <% if current_user.id == c.user_id %>
-        <%= link_to "削除する",public_post_comment_path(@post, c),method: :delete,class: "btn small text-muted pl-3" %>
+        <%= link_to "削除する",post_comment_path(@post, c),method: :delete,class: "btn small text-muted pl-3" %>
       <% end %>
     </div>
   </div>
 <% end %>
 <div class="pt-5 col-10 offset-1 col-md-6 offset-md-3">
-  <%= form_with model:[@post,@comment], url: public_post_comments_path(@post.id), local: true do|f| %>
-  <div class="form-group">
-    <%= f.text_area :body,placeholder: "コメント",class: "col-12",size: "auto" %>
-  </div>
-  <div class="action">
-    <%= f.submit "コメントする",class: "btn-primary col-8 offset-2 col-md-4 offset-md-4" %>
-  </div>
+  <% if current_user.email != "guest@example.com" %>
+    <%= form_with model:[@post,@comment], url: post_comments_path(@post.id), local: true do|f| %>
+    <div class="form-group">
+      <%= f.text_area :body,placeholder: "コメント",class: "col-12",size: "auto" %>
+    </div>
+    <div class="action">
+      <%= f.submit "コメントする",class: "btn-primary col-8 offset-2 col-md-4 offset-md-4" %>
+    </div>
+    <% end %>
   <% end %>
 </div>

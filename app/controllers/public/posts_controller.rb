@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
     @post.user = current_user
     if @post.save
       flash[:notice] = "投稿しました。"
-      redirect_to public_posts_path
+      redirect_to posts_path
     else
       @user = current_user
       flash.now[:alert] = "投稿に失敗しました。"
@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "変更に成功しました。"
-      redirect_to public_post_path(@post)
+      redirect_to post_path(@post)
     else
       flash.now[:alert] = "変更に失敗しました。"
       render :edit
@@ -45,7 +45,7 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.destroy
       flash[:notice] = "削除しました。"
-      redirect_to public_posts_path
+      redirect_to posts_path
     else
       flash.now[:alert] = "削除に失敗しました。"
       render :show

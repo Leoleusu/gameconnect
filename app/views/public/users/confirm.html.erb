@@ -4,6 +4,6 @@
                     本当によろしいですか？</p>
 </div>
 <div class="row-fluid col-auto">
-  <%= link_to "退会しない",public_user_path(current_user),class: "btn btn-success col-2 offset-md-3" %>
-  <%= link_to "退会する",public_user_withdrawal_path, method: :patch,class: "btn btn-danger col-2 offset-md-2",data: {confirm: "本当に退会しますか？"} %>
+  <%= link_to "退会しない",user_path(current_user),class: "btn btn-success col-2 offset-md-3" %>
+  <%= link_to "退会する",user_withdrawal_path, method: :patch,class: "btn btn-danger col-2 offset-md-2",data: {confirm: "本当に退会しますか？"} %>
 </div>
