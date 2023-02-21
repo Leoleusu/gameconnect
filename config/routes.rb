@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  devise_for :users, controllers: {
+    sessions: "public/sessions",
+    registrations: "public/registrations"
+  }
+
   scope module: :public do
     resources :posts do
       resource :favorites, only: [:create, :destroy]
@@ -44,10 +49,6 @@ Rails.application.routes.draw do
    post "users/guest_sign_in" => "public/sessions#guest_sign_in"
  end
 
-  devise_for :users, controllers: {
-    sessions: "public/sessions",
-    registrations: "public/registrations"
-  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
