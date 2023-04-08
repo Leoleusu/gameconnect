@@ -27,7 +27,7 @@
   <div class="d-flex justify-content-center pt-1 pb-3">
     <div class="col-3 col-md-1 p-0 offset-1 offset-md-2">
       <%= link_to user_path(bc.user) do %>
-        <%= image_tag bc.user.get_image(50,50),class: "img-fluid border border-secandary rounded-circle" %>
+      <%= image_tag bc.user.get_image(50,50),class: "img-fluid border border-secandary rounded-circle" %>
       <% end %>
     </div>
     <div class="col offset-md-1 pl-0 text-left">
@@ -35,15 +35,17 @@
       <%= bc.body %>
     </div>
   </div>
-  <% end %>
-  <%= paginate @board_comments %>
-<div class="pt-5 col-10 offset-1 col-md-6 offset-md-3">
-  <%= form_with model:[@board,@board_comment],url: board_board_comments_path(@board.id),method: :post,local: true do |f| %>
-    <div class="form-group">
-      <%= f.text_area :body,placeholder: "最大500文字まで",class: "col-12",size: "auto" %>
-    </div>
-    <div class="action">
-      <%= f.submit :"投稿する", class: "btn-primary col-8 offset-2 col-md-4 offset-md-4 mb-4" %>
-    </div>
-  <% end %>
-</div>
+<% end %>
+<%= paginate @board_comments %>
+<% if current_user.email != "guest@example.com" %>
+  <div class="pt-5 col-10 offset-1 col-md-6 offset-md-3">
+    <%= form_with model:[@board,@board_comment],url: board_board_comments_path(@board.id),method: :post,local: true do |f| %>
+      <div class="form-group">
+        <%= f.text_area :body,placeholder: "最大500文字まで",class: "col-12",size: "auto" %>
+      </div>
+      <div class="action">
+        <%= f.submit :"投稿する", class: "btn-primary col-8 offset-2 col-md-4 offset-md-4 mb-4" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
