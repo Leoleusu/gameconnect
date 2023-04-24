@@ -4,7 +4,7 @@
   <% if @range == "User" %>
     <tbody>
       <% @users.each do |u| %>
-        <tr class="moves-contents" onclick='window.location="/publics/users/<%= u.id %>"' role="link">
+        <tr class="moves-contents" onclick='window.location="/users/<%= u.id %>"' role="link">
           <td><%= u.name %></td>
           <td><%= u.introduction %></td>
         </tr>
@@ -14,7 +14,7 @@
     <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
     <tbody>
       <% @posts.each do |po| %>
-        <tr class="moves-contents" onclick='window.location="/public/posts/<%= po.id %>"' role="link">
+        <tr class="moves-contents" onclick='window.location="/posts/<%= po.id %>"' role="link">
           <td><%= po.user.name %></td>
           <td><%= po.body %></td>
         </tr>

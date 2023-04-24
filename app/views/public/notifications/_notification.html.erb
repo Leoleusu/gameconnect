@@ -1,27 +1,27 @@
-<% sender = notification.sender %>
-<% receiver = notification.receiver %>
-<div class="d-flex pt-3 ml-2 border-top">
-  <div class="col-12 col-lg-9 form-inline text-center justify-content-center">
-    <%= link_to public_user_path(sender) do %>
-      <span class="mt-1"><%= image_tag sender.get_image(40,40),class: "img-fluid border border-secandary rounded-circle" %><%= sender.name %></span><% end %>
-      <p class="text mt-3">さんが</p>
-    <% case notification.action %>
-      <% when "follow" then %>
-        <p class="text mt-3">あなたをフォローしました。</p>
-      <% when "favorite" then %>
-        <p class="text mt-3"><%= link_to "あなたの投稿",public_post_path(notification.post) %>にいいねしました。</p>
-      <% when "comment" then %>
-        <% if notification.post.user_id == receiver.id %>
-          <p class="text pt-3"><%= link_to "あなたの投稿",public_post_path(notification.post) %></p>
-        <% else %>
-          <p class="text pt-3"><%= link_to notification.post.user.name + "さんの投稿",public_post_path(notification.post) %></p>
-        <% end %>
-      <p class="text mt-3">にコメントしました。</p>
-        <% com = Comment.find_by(id: notification.comment_id) %>
-        <div class="col-12 col-lg-9">
-          <p class="text-center text-muted pt-1"><%= com.body %></p>
-          <p class="small text-muted text-right text-bottom"><%= time_ago_in_words(notification.created_at).upcase%></p>
+        <% sender = notification.sender %>
+        <% receiver = notification.receiver %>
+        <div class="d-flex pt-3 ml-2 border-top">
+          <div class="col-12 col-lg-9 form-inline text-center justify-content-center">
+            <%= link_to user_path(sender) do %>
+              <span class="mt-1"><%= image_tag sender.get_image(40,40),class: "img-fluid border border-secandary rounded-circle" %><%= sender.name %></span><% end %>
+              <p class="text mt-3">さんが</p>
+            <% case notification.action %>
+              <% when "follow" then %>
+                <p class="text mt-3">あなたをフォローしました。</p>
+              <% when "favorite" then %>
+                <p class="text mt-3"><%= link_to "あなたの投稿",post_path(notification.post) %>にいいねしました。</p>
+              <% when "comment" then %>
+                <% if notification.post.user_id == receiver.id %>
+                  <p class="text pt-3"><%= link_to "あなたの投稿",post_path(notification.post) %></p>
+                <% else %>
+                  <p class="text pt-3"><%= link_to notification.post.user.name + "さんの投稿",post_path(notification.post) %></p>
+                <% end %>
+              <p class="text mt-3">にコメントしました。</p>
+                <% com = Comment.find_by(id: notification.comment_id) %>
+                <div class="col-12 col-lg-9">
+                  <p class="text-center text-muted pt-1"><%= com.body %></p>
+                  <p class="small text-muted text-right text-bottom"><%= time_ago_in_words(notification.created_at).upcase%></p>
+                </div>
+              <% end %>
+          </div>
         </div>
-      <% end %>
-  </div>
-</div>
