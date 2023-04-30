@@ -1,0 +1,8 @@
+ <tbody>
+  <% @users.each do |u| %>
+    <tr class="moves-contents" onclick='window.location="/users/<%= u.id %>"' role="link">
+      <td><%= u.name %></td>
+      <td><%= u.introduction %></td>
+    </tr>
+  <% end %>
+</tbody>
