@@ -12,6 +12,10 @@ class User < ApplicationRecord
          has_many :boards, dependent: :destroy
          has_many :board_comments, dependent: :destroy
 
+         #ダイレクトメッセージ機能
+         has_many :mini_entries, dependent: :destroy
+         has_many :mini_messages, dependent: :destroy
+
          #フォローした・されたの関係
          has_many :relationships, class_name: "Relationship", foreign_key: "follow_id", dependent: :destroy
          has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
