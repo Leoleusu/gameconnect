@@ -13,7 +13,7 @@ class Public::MiniRoomsController < ApplicationController
     current_mini_entries = current_user.mini_entries
     my_mini_room_id = []
     current_mini_entries.each do |entry|
-      my_room_id << entry.room.id
+      my_mini_room_id << mini_entry.mini_room.id
     end
     #自分のroom_idでuser_idが自分じゃないのを取得
     @another_mini_entries = MiniEntry.where(mini_room_id: my_mini_room_id).where.not(user_id: current_user.id)
