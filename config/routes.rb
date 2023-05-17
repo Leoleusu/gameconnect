@@ -40,6 +40,8 @@ Rails.application.routes.draw do
       resources :board_comments, only: [:create], shallow: true
     end
     resources :notifications, only: :index
+    resources :mini_messages, only: :create
+    resources :mini_rooms, only: [:create,:index,:show]
     get "user/confirm" => "users#confirm" #退会確認画面
     patch "user/withdrawal" => "users#withdrawal" #論理削除用のルーティング
     post "guest_sign_in" => "sessions#guest_sign_in" #ゲストログイン用のルーティング

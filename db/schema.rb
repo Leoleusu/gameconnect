@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_17_120826) do
+ActiveRecord::Schema.define(version: 2023_05_08_135007) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -96,6 +96,30 @@ ActiveRecord::Schema.define(version: 2023_01_17_120826) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "mini_entries", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "mini_room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mini_room_id"], name: "index_mini_entries_on_mini_room_id"
+    t.index ["user_id"], name: "index_mini_entries_on_user_id"
+  end
+
+  create_table "mini_messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "mini_room_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mini_room_id"], name: "index_mini_messages_on_mini_room_id"
+    t.index ["user_id"], name: "index_mini_messages_on_user_id"
+  end
+
+  create_table "mini_rooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "receiver_id"
@@ -155,6 +179,10 @@ ActiveRecord::Schema.define(version: 2023_01_17_120826) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
+  add_foreign_key "mini_entries", "mini_rooms"
+  add_foreign_key "mini_entries", "users"
+  add_foreign_key "mini_messages", "mini_rooms"
+  add_foreign_key "mini_messages", "users"
   add_foreign_key "notifications", "comments"
   add_foreign_key "notifications", "posts"
   add_foreign_key "notifications", "users", column: "receiver_id"
