@@ -1,0 +1,12 @@
+<h1 class="text-center pt-3">DM一覧</h1>
+<% if current_user.email != "guest@example.com" %>
+  <% if @another_mini_entries.exists? %>
+
+  <% else %>
+    <div class="col-12 p-5">
+      <p class="text-muted text-center">まだ誰ともダイレクトメッセージをしてないよ！</p>
+    </div>
+  <% end %>
+<% else %>
+  <h2 class="text-center p-3">このアカウントではこの機能は使えません。</h2>
+<% end %>

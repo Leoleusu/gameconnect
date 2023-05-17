@@ -38,22 +38,11 @@
               <% if current_user.email != "guest@example.com" %>
                 <% if unchecked_notifications.any? %>
                   <%= link_to notifications_path,class: "nav-link text-secondary ml-auto" do %>
-                    <span class="fa-stack"><i class="fas fa-bell fa-stack-2x"></i><i class="n-circle fas fa-circle fa-stack-1x" style="color:red;"></i></span>
-                  <% end %>
+                  <span class="fa-stack"><i class="fas fa-bell fa-stack-2x"></i><i class="n-circle fas fa-circle fa-stack-1x" style="color:red;"></i></span><% end %>
                 <% else %>
                   <%= link_to notifications_path,class: "nav-link text-secondary ml-auto" do %>
-                    <i class="fas fa-bell fa-2x"></i>
-                  <% end %>
-<<<<<<< HEAD
-=======
+                  <i class="fas fa-bell fa-2x"></i><% end %>
                 <% end %>
-                <%= link_to mini_rooms_path,class: "nav-link text-secondary" do %>
-                  <i class="fas fa-message fa-2x"></i>
->>>>>>> origin/main
-                <% end %>
-                <%#= link_to mini_rooms_path,class: "nav-link text-secondary" do %>
-                  <!--<i class="fas fa-message fa-2x"></i>-->
-                <%# end %>
               <% end %>
               <%= link_to user_path(current_user),class: "nav-link" do %>
               <%= image_tag current_user.get_image(40,40),class: "border border-secondary bg-light rounded-circle" %><% end %>
